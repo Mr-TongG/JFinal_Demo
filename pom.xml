@@ -122,7 +122,7 @@
   
   
   <build>
-    <finalName>top.liaoyichao</finalName>
+    <finalName>top.travel</finalName>
 	    <plugins>
 	     <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
