@@ -23,8 +23,7 @@ import top.liaoyichao.controller.HomePageController;
 import top.liaoyichao.controller.index.IndexController;
 import top.liaoyichao.controller.index.LoginController;
 import top.liaoyichao.interceptor.OverClassInterceptor;
-import top.liaoyichao.model.PersonModel;
-import top.liaoyichao.model.UserModel;
+import top.liaoyichao.model.*;
 
 /**
  * 
@@ -128,14 +127,23 @@ public class MainConfig extends JFinalConfig {
 		//_MappingKit.mapping(arp);
 		
 		//把数据库中的表进行映射
-		arp.addMapping("t_user", UserModel.class);
-		arp.addMapping("t_person", PersonModel.class);
-		
+		//arp.addMapping("t_user", UserModel.class);
+		//arp.addMapping("t_person", UserModel.class);
+		arp.addMapping("user", UserModel.class);
+		arp.addMapping("hotel", HotelModel.class);
+		arp.addMapping("hotel_collection", HotelColModel.class);
+		arp.addMapping("hotel_comment", HotelCommModel.class);
+		arp.addMapping("hotel_image", HotelImageModel.class);
+		arp.addMapping("reservation", ReservationModel.class);
+		arp.addMapping("sight", SightModel.class);
+		arp.addMapping("sight_collection", SightColModel.class);
+		arp.addMapping("sight_comment", SightCommModel.class);
+		arp.addMapping("sight_image", SightImageModel.class);
+
 		//添加到插件列表中
 		me.add(dbPlugin);
 		me.add(arp);
-		
-		
+
 	}
 	/**
 	 * 配置全局拦截器
