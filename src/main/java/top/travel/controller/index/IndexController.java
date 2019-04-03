@@ -14,7 +14,6 @@ public class IndexController extends Controller {
 	 * 
 	 */
 	public void index() {
-		
 		if(getSessionAttr(MySession.getSessionKey()) != null){
 			//代表标识session 跳转页面 并提示 请先登陆
 			setAttr("msg", "请先登陆~");
