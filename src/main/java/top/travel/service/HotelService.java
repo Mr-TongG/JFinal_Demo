@@ -11,9 +11,11 @@ public class HotelService {
     public HotelModel findById(int id) {
         return hotelSqlModel.findById(id);
     }
-
+    public HotelModel findFirst(int id) {
+        return hotelSqlModel.findFirst(id);
+    }
     public List<HotelModel> findAll(){
-        return hotelSqlModel.fingAll();
+        return hotelSqlModel.findAll();
     }
 
     public boolean updateById(int h_id, String h_name, int h_price, String h_location, int h_grade,

@@ -20,6 +20,7 @@ import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.render.ViewType;
 
 import top.travel.controller.HomePageController;
+import top.travel.controller.HotelController;
 import top.travel.controller.index.IndexController;
 import top.travel.controller.index.LoginController;
 import top.travel.interceptor.OverClassInterceptor;
@@ -81,9 +82,11 @@ public class MainConfig extends JFinalConfig {
 		
 		//普通不拆分的方式配置 如下
 		//设置默认访问首页路由 可使用http://localhost:port 直接访问 如果80端口 port可以省略
-		me.add("/", IndexController.class , "/static");
-		me.add("/login" , LoginController.class , "/static");
-		me.add("/home",HomePageController.class , "/static");
+		//me.add("/login" , LoginController.class , "/static");
+		//me.add("/home",HomePageController.class , "/static");
+		//从这里开始是旅游网站的控制路由
+        me.add("/", IndexController.class ,"/travelSite");
+		me.add("/hotel", HotelController.class , "/travelSite");
 	}
 	// 先加载开发环境配置，再追加生产环境的少量配置覆盖掉开发环境配置
 	static void loadConfig() {
@@ -150,8 +153,8 @@ public class MainConfig extends JFinalConfig {
 	 */
 	@Override
 	public void configInterceptor(Interceptors me) {
-		me.add(new SessionInViewInterceptor());
-		me.add(new OverClassInterceptor());
+		//me.add(new SessionInViewInterceptor());
+		//me.add(new OverClassInterceptor());
 	}
 	/**
 	 * 配置全局处理器

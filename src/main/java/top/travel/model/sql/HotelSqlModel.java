@@ -7,15 +7,17 @@ import java.util.List;
 public class HotelSqlModel {
     private static final HotelModel hotelModel = new HotelModel();
 
-    public HotelModel HotelModel(){
+    public HotelModel getHotelModel(){
         return hotelModel;
     }
 
     public HotelModel findById(int id){
         return hotelModel.findById(id);
     }
-
-    public List<HotelModel> fingAll(){
+    public HotelModel findFirst(int id){
+        return hotelModel.findFirst("select * from hotel where h_id ="+id);
+    }
+    public List<HotelModel> findAll(){
         return hotelModel.findAll();
     }
 
