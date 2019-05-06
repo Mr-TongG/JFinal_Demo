@@ -14,9 +14,6 @@ public class HotelSqlModel {
     public HotelModel findById(int id){
         return hotelModel.findById(id);
     }
-    public HotelModel findFirst(int id){
-        return hotelModel.findFirst("select * from hotel where h_id ="+id);
-    }
     public List<HotelModel> findAll(){
         return hotelModel.findAll();
     }
@@ -34,27 +31,27 @@ public class HotelSqlModel {
         hotelModel.set("h_phone",h_phone);
         return hotelModel.update();
     }
-
+    //插入的时候记得创建新的对象！！
     public boolean insertHotel(int h_id, String h_name, int h_price, String h_location, int h_grade,
                                float h_score, String h_introduction, int s_id, String h_phone){
-        hotelModel.set("h_id",h_id);
-        hotelModel.set("h_name",h_name);
-        hotelModel.set("h_price",h_price);
-        hotelModel.set("h_location",h_location);
-        hotelModel.set("h_grade",h_grade);
-        hotelModel.set("h_score",h_score);
-        hotelModel.set("h_introduction", h_introduction);
-        hotelModel.set("s_id", s_id);
-        hotelModel.set("h_phone",h_phone);
-        return hotelModel.save();
+        return new HotelModel().set("h_id",h_id)
+        .set("h_name",h_name)
+        .set("h_price",h_price)
+        .set("h_location",h_location)
+        .set("h_grade",h_grade)
+        .set("h_score",h_score)
+        .set("h_introduction", h_introduction)
+        .set("s_id", s_id)
+        .set("h_phone",h_phone)
+        .save();
     }
 
    public boolean deleteHotel(int id){
         return hotelModel.deleteById(id);
    }
    //搜索名字中包含condition的酒店
-   public List<HotelModel> searchHotel(String condition){
-        return hotelModel.find("select * from hotel where h_name like %",condition+"%");
+   public List<HotelModel> searchHotel(String keywords){
+        return hotelModel.find("select * from hotel where h_name like '%" + keywords + "%'");
    }
 
 }

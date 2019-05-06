@@ -1959,7 +1959,7 @@ pre code {
     width: 33.33333333%;
   }
   .col-md-3 {
-    width: 25%;
+    width: 33.33333333%;
   }
   .col-md-2 {
     width: 16.66666667%;
@@ -3435,7 +3435,7 @@ tbody.collapse.in {
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 160px;
+  min-width: 120px;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;

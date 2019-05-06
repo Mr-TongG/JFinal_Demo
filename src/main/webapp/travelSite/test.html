@@ -31,5 +31,16 @@
     </#list>
     </tbody>
 </table>
+<form action="/search/Search" method="post" role="form" class="form-inline">
+    <div class="from-group" style="margin:20px 30px 30px 20px">
+        <select class="selectpicker show-tick form-control" data-live-search="true" name="condition" style="width:100px" required="">
+            <option disabled>--请选择--</option>
+            <option>景点</option>
+            <option>酒店</option>
+        </select>
+        <input type="text" class="form-control" style="width: 300px" name="keywords" placeholder="请输入关键词" required="" />
+        <button class="btn btn-info btn-success" type="submit">查找</button>
+    </div>
+</form>
 </body>
 </html>

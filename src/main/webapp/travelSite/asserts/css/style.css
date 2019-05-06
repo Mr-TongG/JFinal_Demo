@@ -158,7 +158,6 @@ p.wel.text {
 }
 h3.tittle {
     font-size: 3em;
-    text-align: center;
 	color: #00AD8A;
 }
 .cap h4 {
@@ -168,7 +167,7 @@ h3.tittle {
     font-size: 1em;
     line-height: 2em;
 }
-.deatils-left:nth-child(1) {
+.details-left:nth-child(1) {
     padding-left: 0;
 }
 ul.cap1 li {
@@ -1026,7 +1025,7 @@ ul.cap1 li {
 }
 .wel-grid {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
 }
 p.wel.text {
     width: 76%;

@@ -11,9 +11,6 @@ public class HotelService {
     public HotelModel findById(int id) {
         return hotelSqlModel.findById(id);
     }
-    public HotelModel findFirst(int id) {
-        return hotelSqlModel.findFirst(id);
-    }
     public List<HotelModel> findAll(){
         return hotelSqlModel.findAll();
     }
@@ -32,7 +29,7 @@ public class HotelService {
         return hotelSqlModel.deleteHotel(id);
     }
 
-    public List<HotelModel> searchHotel(String condition){
-        return hotelSqlModel.searchHotel(condition);
+    public List<HotelModel> searchHotel(String keywords){
+        return hotelSqlModel.searchHotel(keywords);
     }
 }

@@ -21,8 +21,10 @@ import com.jfinal.render.ViewType;
 
 import top.travel.controller.HomePageController;
 import top.travel.controller.HotelController;
+import top.travel.controller.ReservationController;
 import top.travel.controller.index.IndexController;
 import top.travel.controller.index.LoginController;
+import top.travel.controller.index.SearchController;
 import top.travel.interceptor.OverClassInterceptor;
 import top.travel.model.*;
 
@@ -87,6 +89,8 @@ public class MainConfig extends JFinalConfig {
 		//从这里开始是旅游网站的控制路由
         me.add("/", IndexController.class ,"/travelSite");
 		me.add("/hotel", HotelController.class , "/travelSite");
+        me.add("/reserve", ReservationController.class , "/travelSite");
+        me.add("/search", SearchController.class,"/travelSite");
 	}
 	// 先加载开发环境配置，再追加生产环境的少量配置覆盖掉开发环境配置
 	static void loadConfig() {
@@ -132,15 +136,15 @@ public class MainConfig extends JFinalConfig {
 		//把数据库中的表进行映射
 		//arp.addMapping("t_user", UserModel.class);
 		//arp.addMapping("t_person", UserModel.class);
-		arp.addMapping("user", UserModel.class);
-		arp.addMapping("hotel", HotelModel.class);
+		arp.addMapping("user","u_id",UserModel.class);
+		arp.addMapping("hotel","h_id",HotelModel.class);
 		arp.addMapping("hotel_collection", HotelColModel.class);
-		arp.addMapping("hotel_comment", HotelCommModel.class);
+		arp.addMapping("hotel_comment","hc_id", HotelCommModel.class);
 		arp.addMapping("hotel_image", HotelImageModel.class);
-		arp.addMapping("reservation", ReservationModel.class);
-		arp.addMapping("sight", SightModel.class);
+		arp.addMapping("reservation","r_id", ReservationModel.class);
+		arp.addMapping("sight","s_id",SightModel.class);
 		arp.addMapping("sight_collection", SightColModel.class);
-		arp.addMapping("sight_comment", SightCommModel.class);
+		arp.addMapping("sight_comment","sc_id", SightCommModel.class);
 		arp.addMapping("sight_image", SightImageModel.class);
 
 		//添加到插件列表中

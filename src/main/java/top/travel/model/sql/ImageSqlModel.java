@@ -6,8 +6,8 @@ import top.travel.model.SightImageModel;
 import java.util.List;
 
 public class ImageSqlModel {
-    public static final SightImageModel sightImageModel = new SightImageModel();
-    public static final HotelImageModel hotelImageModel = new HotelImageModel();
+    private static final SightImageModel sightImageModel = new SightImageModel();
+    private static final HotelImageModel hotelImageModel = new HotelImageModel();
 
     //根据景点ID找到所有该景点的图片
     public List<SightImageModel> findAnSightImage(int id){
