@@ -10,8 +10,8 @@ public class ReservationController extends Controller {
     HotelSqlModel hotelService = new HotelSqlModel();
     //预订酒店
     public void reserveHotel(){
-        //int u_id = Integer.parseInt(getPara("u_id"));
-        int u_id = 2;
+        int u_id = getParaToInt("u_id");
+        //int u_id = 2;
         int h_id = getParaToInt("h_id");
         int r_number_1 = getParaToInt("r_number_1");
         int r_number_2 = getParaToInt("r_number_2");
@@ -24,12 +24,12 @@ public class ReservationController extends Controller {
         //再次查询信息，回到之前的页面
         HotelModel hotel = hotelService.findById(h_id);
         setAttr("hotel",hotel);
-        renderFreeMarker("hotel.html");
+        render("hotel.html");
     }
     //取消预订
     public void CancelReservation(){
         int r_id = getParaToInt();
         reservationService.deleteReservation(r_id);
-        renderFreeMarker("settings.html");
+        render("settings.html");
     }
 }

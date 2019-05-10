@@ -16,11 +16,12 @@ public class HotelController extends Controller {
     public void ShowHotel(){
         int id = Integer.parseInt(getPara());   //需要进行数据回显 在url中得到id值
         HotelModel hotel = hotelService.findById(id);
+        //详细显示时显示全部的图片并进行轮播
         List<HotelImageModel> hotelImages = imageService.findAnHotelImage(id);
-        HotelImageModel hotelImage = hotelImages.get(1);
+        //HotelImageModel hotelImage = hotelImages.get(1);
         setAttr("hotel",hotel);
         setAttr("hotelImages", hotelImages);
-        setAttr("hotelImage",hotelImage);
-        renderFreeMarker("hotel.html");
+        //setAttr("hotelImage",hotelImage);
+        render("hotel.html");
     }
 }

@@ -1,5 +1,6 @@
 package top.travel.service;
 
+import com.jfinal.plugin.activerecord.Page;
 import top.travel.model.HotelModel;
 import top.travel.model.sql.HotelSqlModel;
 
@@ -31,5 +32,9 @@ public class HotelService {
 
     public List<HotelModel> searchHotel(String keywords){
         return hotelSqlModel.searchHotel(keywords);
+    }
+    public Page<HotelModel> paginate(int pageNumber, int pageSize, String keywords){
+        return hotelSqlModel.queryBypaginate(pageNumber,pageSize,keywords);
+
     }
 }

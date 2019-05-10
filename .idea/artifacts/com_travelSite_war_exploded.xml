@@ -25,7 +25,6 @@
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.1" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.29" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
-          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.28" />
           <element id="library" level="project" name="Maven: com.jfinal:jfinal:3.6" />
           <element id="library" level="project" name="Maven: cglib:cglib-nodep:3.2.5" />
         </element>

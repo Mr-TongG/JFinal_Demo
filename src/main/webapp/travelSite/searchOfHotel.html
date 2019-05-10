@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
     <title>Home</title>
     <link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -25,40 +24,31 @@
 </head>
 <body>
 <div class="banner"></div>
-<#include "/travelSite/commonPart/header.html" />
+#include("/travelSite/commonPart/header.html")
 <!---header--->
-<div class="content">
-    <form action="/search/Search" method="post" role="form" class="form-inline">
-        <div class="from-group" style="margin:20px 30px 30px 20px">
-            <select class="selectpicker show-tick form-control" data-live-search="true" name="condition" style="width:100px" required="">
-                <option disabled>--请选择--</option>
-                <option>景点</option>
-                <option>酒店</option>
-            </select>
-            <input type="text" class="form-control" style="width: 300px" name="keywords" placeholder="请输入关键词" required="" />
-            <button class="btn btn-info btn-success" type="submit">查找</button>
-        </div>
-    </form>
-</div>
 <div class="resort-section">
     <div class="container">
-        <#if list_hotel??>
+        #if(hotelPage.list?size != 0)
         <h3 class="tittle" >为您找到以下酒店</h3>
-        <#list list_hotel as hotel>
+        #for(hotel : hotelPage.list)
         <div class="resort-grids">
             <!-- start content_slider -->
             <div id="owl-demo" class="owl-carousel">
                 <div class="item">
                     <div class="col-md-6 cap-img">
-                        <a href="/hotel/ShowHotel/${hotel.h_id}"><img src="/travelSite/asserts/images/p.jpg" class="img-responsive gray" alt=""/></a>
+                        <a href="/hotel/ShowHotel/#(hotel.h_id)">
+
+                            <!--#include("/travelSite/commonPart/hotelImage.html")-->
+                            <img src="/travelSite/asserts/images/p.jpg" class="img-responsive gray" alt=""/>
+                        </a>
                     </div>
                     <div class="col-md-6 cap">
-                        <a href="/hotel/ShowHotel/${hotel.h_id}"><h4>${hotel.h_name}</h4></a>
+                        <a href="/hotel/ShowHotel/#(hotel.h_id)"><h4>#(hotel.h_name)</h4></a>
                         <ul class="cap1">
-                            <li><i class="glyphicon glyphicon-map-marker"></i>${hotel.h_location}</li>
-                            <li><i class="glyphicon glyphicon-star"></i> ${hotel.h_score}</li>
+                            <li><i class="glyphicon glyphicon-map-marker"></i>#(hotel.h_location)</li>
+                            <li><i class="glyphicon glyphicon-star"></i> #(hotel.h_score)</li>
                         </ul>
-                        <p>${hotel.h_introduction}</p>
+                        <p>#(hotel.h_introduction)</p>
                         <div class="detais">
                             <div class="col-md-9 deatils-left">
                                 <div class="list">
@@ -72,7 +62,7 @@
                             <div class="col-md-3 deatils-right">
                                 <div class="detail-top">
                                     <span>每  晚</span>
-                                    <h4>${hotel.h_price+100}元起</h4>
+                                    <h4>#(hotel.h_price+100)元起</h4>
                                 </div>
                             </div>
                             <div class="clearfix"> </div>
@@ -82,10 +72,11 @@
                 </div>
             </div>
         </div><hr/>
-    </#list>
-    <#else>
+        #end
+    #@paginate(blogPage.pageNumber, blogPage.totalPage, "/search/paginate")
+    #else
     <h3 class="tittle" style="text-align: center">很抱歉，没有找到相关酒店，换个关键词试试哦！</h3>
-    </#if>
+    #end
     </div>
 </div>
 <!---welcome--->
@@ -93,18 +84,18 @@
     <div class="container">
         <h2 class="tittle">为您推荐</h2>
         <div class="wel-grids">
-            <#assign x=0 />
-            <#list recommendations as recommendation>
-            <#assign x=x+1/>
-            <#if x == 4>
-            <#break>
-            </#if>
+            #set(x = 0)
+            #for(recommendation : recommendations)
+            #set(x = x+1)
+            #if(x == 4)
+            #break
+            #end
             <div class="col-md-3 wel-grid">
-                <a href="/hotel/ShowHotel/${recommendation.h_id}"><img src="/travelSite/asserts/images/w1.jpg" class="img-responsive gray" alt=""/></a>
-                <a href="/hotel/ShowHotel/${recommendation.h_id}"><h4>${recommendation.h_name}</h4></a>
-                <p>${recommendation.h_introduction}</p>
+                <a href="/hotel/ShowHotel/#(recommendation.h_id)"><img src="/travelSite/asserts/images/w1.jpg" class="img-responsive gray" alt=""/></a>
+                <a href="/hotel/ShowHotel/#(recommendation.h_id)"><h4>#(recommendation.h_name)</h4></a>
+                <p>#(recommendation.h_introduction)</p>
             </div>
-            </#list>
+            #end
             <div class="clearfix"></div>
         </div>
     </div>
@@ -112,7 +103,7 @@
 <!---welcome--->
 </div>
 <!--footer-->
-<#include "/travelSite/commonPart/footer.ftl" />
+#include("/travelSite/commonPart/footer.ftl")
 <!--footer-->
 </body>
 </html>

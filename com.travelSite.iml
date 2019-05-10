@@ -59,7 +59,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.46" level="project" />
-    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.28" level="project" />
     <orderEntry type="library" name="Maven: com.jfinal:jfinal:3.6" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib-nodep:3.2.5" level="project" />
   </component>

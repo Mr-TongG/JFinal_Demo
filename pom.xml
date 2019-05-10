@@ -17,7 +17,6 @@
     <jfinalundertow.version>1.5</jfinalundertow.version>
 	<druid.version>1.0.29</druid.version>
 	<mysql.version>5.1.46</mysql.version>
-    <freemarker.version>2.3.28</freemarker.version>
 </properties>
   
   <!-- 使用阿里 maven 库 -->
@@ -100,12 +99,6 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>${mysql.version}</version>
 	</dependency>
-
-  		<dependency>
-		    <groupId>org.freemarker</groupId>
-		    <artifactId>freemarker</artifactId>
-		    <version>${freemarker.version}</version>
-		</dependency>
 
 
 

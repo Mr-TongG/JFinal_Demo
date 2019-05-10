@@ -27,6 +27,6 @@ public class IndexController extends Controller {
 		HotelService hotelService =new HotelService();
 		List<HotelModel> hotelModel = hotelService.findAll();
 		setAttr("hotelAll",hotelModel);
-		renderFreeMarker("test.html");
+		render("test.html");
 	}
 }

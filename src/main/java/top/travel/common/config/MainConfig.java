@@ -7,10 +7,10 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
+import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
-import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.alibaba.druid.filter.stat.StatFilter;
@@ -19,13 +19,11 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.render.ViewType;
 
-import top.travel.controller.HomePageController;
 import top.travel.controller.HotelController;
 import top.travel.controller.ReservationController;
 import top.travel.controller.index.IndexController;
+import top.travel.controller.SearchController;
 import top.travel.controller.index.LoginController;
-import top.travel.controller.index.SearchController;
-import top.travel.interceptor.OverClassInterceptor;
 import top.travel.model.*;
 
 /**
@@ -56,7 +54,7 @@ public class MainConfig extends JFinalConfig {
 		//设置默认下载文件路径 renderFile使用
 		me.setBaseDownloadPath("download");
 		//设置默认视图类型
-		me.setViewType(ViewType.FREE_MARKER);
+		//me.setViewType(ViewType.JFINAL_TEMPLATE);
 		//设置404渲染视图
 		me.setError404View("404.html");
 		me.setError500View("500.html");
@@ -88,9 +86,11 @@ public class MainConfig extends JFinalConfig {
 		//me.add("/home",HomePageController.class , "/static");
 		//从这里开始是旅游网站的控制路由
         me.add("/", IndexController.class ,"/travelSite");
+        me.add("/login" , LoginController.class ,"/travelSite");
 		me.add("/hotel", HotelController.class , "/travelSite");
         me.add("/reserve", ReservationController.class , "/travelSite");
         me.add("/search", SearchController.class,"/travelSite");
+		//me.add("/personal",PersonalController.class);
 	}
 	// 先加载开发环境配置，再追加生产环境的少量配置覆盖掉开发环境配置
 	static void loadConfig() {
@@ -157,7 +157,7 @@ public class MainConfig extends JFinalConfig {
 	 */
 	@Override
 	public void configInterceptor(Interceptors me) {
-		//me.add(new SessionInViewInterceptor());
+		me.add(new SessionInViewInterceptor());
 		//me.add(new OverClassInterceptor());
 	}
 	/**
@@ -189,9 +189,11 @@ public class MainConfig extends JFinalConfig {
 	public void configEngine(Engine me) {
 		//配置模板支持热加载
 		me.setDevMode(p.getBoolean("engineDevMode", false));
+		//me.setDevMode(true);
 		//这里只有选择JFinal TPL的时候才用
 		//配置共享函数模板
 		//me.addSharedFunction("/view/common/layout.html")
+        me.addSharedFunction("/travelSite/commonPart/_paginate.html");
 	}
 	
 	public static void main(String[] args) {

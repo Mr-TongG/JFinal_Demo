@@ -43,7 +43,7 @@ public class HomePageController extends Controller{
 		setSessionAttr(MySession.getFromSessionKey(), MySession.getFromSession());
 		
 		setAttr("insertPersonTAG", "insertPersonTAG");
-		renderFreeMarker("add.html");
+		//renderFreeMarker("add.html");
 	}
 	
 	//保存 添加界面传输过来的数据
@@ -58,7 +58,7 @@ public class HomePageController extends Controller{
         } catch (NumberFormatException e) {
         	setAttr("insertPersonTAG", "insertPersonTAG");
 			setAttr("SaveAgeError","请输入1~3位之间的数字哦！");
-			renderFreeMarker("add.html");
+			//renderFreeMarker("add.html");
         }
 	}
 	
@@ -77,7 +77,7 @@ public class HomePageController extends Controller{
 		setAttr("age", find.get("age"));
 		setAttr("address", find.get("address"));
 		setAttr("updatePersonTAG", "updatePersonTAG");
-		renderFreeMarker("add.html");
+		//renderFreeMarker("add.html");
 	}
 	
 	//编辑界面提交的数据方法
@@ -95,7 +95,7 @@ public class HomePageController extends Controller{
 			setAttr("id", getPara("id"));
 			setAttr("updatePersonTAG", "updatePersonTAG");
 			setAttr("updateAgeError", "请输入1~3之间的数字~");
-			renderFreeMarker("add.html");
+			//renderFreeMarker("add.html");
 		}
 	}
 	
@@ -112,7 +112,7 @@ public class HomePageController extends Controller{
 	public void HomePage(){
 		List<PersonModel> findAll = personService.findAll();
 		setAttr("personAll", findAll);
-		renderFreeMarker("HomePage.html");
+		//renderFreeMarker("HomePage.html");
 	}
 	
 }

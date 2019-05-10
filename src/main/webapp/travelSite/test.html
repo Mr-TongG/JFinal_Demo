@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,10 +17,10 @@
     </tr>
     </thead>
     <tbody>
-    <#list hotelAll as hotel>
+    #for(hotel : hotelAll)
     <tr>
-        <td> ${hotel.h_id} </td>
-        <td> ${hotel.h_name} </td>
+        <td> #(hotel.h_id) </td>
+        <td> #(hotel.h_name) </td>
         <td> </td>
         <td> </td>
         <td>
@@ -27,8 +28,8 @@
 
         </td>
     </tr>
-    <a class="btn btn-sm btn-primary" href="/hotel/ShowHotel/${hotel.h_id}">跳转</a>
-    </#list>
+    <a class="btn btn-sm btn-primary" href="/hotel/ShowHotel/#(hotel.h_id)">跳转</a>
+    #end
     </tbody>
 </table>
 <form action="/search/Search" method="post" role="form" class="form-inline">

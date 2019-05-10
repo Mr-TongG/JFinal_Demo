@@ -18,13 +18,13 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html" data-hover="Home">主页 </a></li>
-                            <li><a href="about.html" data-hover="About">About</a></li>
-                            <li class="active"><a data-hover="Restaurant" href="hotel.html">Restaurant</a></li>
-                            <li><a data-hover="Gallery" href="gallery.html">Gallery</a></li>
-                            <li><a data-hover="Rooms" href="rooms.html">Rooms</a></li>
-                            <li><a data-hover="登陆" href="login.html">登录</a></li>
-                            <li><a data-hover="注册" href="signup.html">注册</a></li>
+                            <li><a href="/travelSite/index.html" data-hover="Home">主页 </a></li>
+                            <li><a href="/travelSite/about.html" data-hover="About">About</a></li>
+                            <li class="active"><a data-hover="Restaurant" href="/travelSite/hotel.html">酒店</a></li>
+                            <li><a data-hover="Gallery" href="/travelSite/gallery.html">Gallery</a></li>
+                            <li><a data-hover="Rooms" href="/travelSite/rooms.html">Rooms</a></li>
+                            <li><a data-hover="登陆" href="/login/stepToLogin">登录</a></li>
+                            <li><a data-hover="注册" href="/login/stepToSignUp">注册</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -32,4 +32,17 @@
             <div class="clearfix"></div>
         </div>
     </div>
+</div>
+<div class="content">
+    <form action="/search/Search" method="post" role="form" class="form-inline">
+        <div class="from-group" style="margin:20px 30px 30px 20px">
+            <select class="selectpicker show-tick form-control" data-live-search="true" name="condition" style="width:100px" required="">
+                <option disabled>--请选择--</option>
+                <option>景点</option>
+                <option>酒店</option>
+            </select>
+            <input type="text" class="form-control" style="width: 300px" name="keywords" placeholder="请输入关键词" required="" />
+            <button class="btn btn-info btn-success" type="submit">查找</button>
+        </div>
+    </form>
 </div>

@@ -1,5 +1,6 @@
 package top.travel.model.sql;
 
+import com.jfinal.plugin.activerecord.Page;
 import top.travel.model.HotelModel;
 
 import java.util.List;
@@ -53,5 +54,8 @@ public class HotelSqlModel {
    public List<HotelModel> searchHotel(String keywords){
         return hotelModel.find("select * from hotel where h_name like '%" + keywords + "%'");
    }
-
+   //分页查询名字中包含condition的酒店
+    public Page<HotelModel> queryBypaginate(int pageNumber , int pageSize , String keywords){
+        return hotelModel.paginate(pageNumber,pageSize,"select *","from hotel where h_name like concat('%', ?, '%')", keywords);
+    }
 }
