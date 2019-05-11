@@ -1,224 +1,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
-<link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!--theme-style-->
-<link href="/travelSite/asserts/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/travelSite/asserts/css/font-awesome.css" rel="stylesheet">
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta property="og:title" content="Vide" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!---->
-<script src="/travelSite/asserts/js/jquery.min.js"></script>
-<script src="/travelSite/asserts/js/bootstrap.min.js"></script>
-<!---->
-<link rel="stylesheet" href="/travelSite/asserts/css/flexslider.css" type="text/css" media="screen" />
-<link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
-<!---strat-date-piker---->
-<!-- requried-jsfiles-for owl -->
-							<link href="/travelSite/asserts/css/owl.carousel.css" rel="stylesheet"/>
-							    <script src="/travelSite/asserts/js/owl.carousel.js"></script>
-							        <script>
-							    $(document).ready(function() {
-							      $("#owl-demo").owlCarousel({
-							        items : 1,
-							        lazyLoad : true,
-							        autoPlay : true,
-							        navigation : false,
-							        navigationText :  false,
-							        pagination : true,
-							      });
-							    });
-							    </script>
-							 <!-- //requried-jsfiles-for owl -->
-
+	<title>Home</title>
+	<link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!--theme-style-->
+	<link href="/travelSite/asserts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/travelSite/asserts/css/font-awesome.css" rel="stylesheet">
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta property="og:title" content="Vide" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!---->
+	<script src="/travelSite/asserts/js/jquery.min.js"></script>
+	<script src="/travelSite/asserts/js/bootstrap.min.js"></script>
+	<!---->
+	<link rel="stylesheet" href="/travelSite/asserts/css/flexslider.css" type="text/css" media="screen" />
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
+	<!---strat-date-piker---->
+	<!-- requried-jsfiles-for owl -->
+	<link href="/travelSite/asserts/css/owl.carousel.css" rel="stylesheet"/>
+	<script src="/travelSite/asserts/js/owl.carousel.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#owl-demo").owlCarousel({
+				items : 1,
+				lazyLoad : true,
+				autoPlay : true,
+				navigation : false,
+				navigationText :  false,
+				pagination : true,
+			});
+		});
+	</script>
+	<!-- //requried-jsfiles-for owl -->
 </head>
 <body>
-	<div class="banner"></div>
-	<#include "/travelSite/commonPart/header.html" />
-		<!---header--->		
-		<div class="content">
+<div style="height:100px;overflow: hidden">
+	<img src="/travelSite/asserts/images/ba1.jpg" class="img-responsive gray" alt="" style="width:100%"/>
+</div>
+#include("/travelSite/commonPart/header.html")
+<div class="content">
+	<!---welcome--->
+	<div class="welcome">
+		<div class="container">
+			<h2 class="tittle">热门景点</h2>
+			<p class="wel text">人生就是一次充满未知的旅行，在乎的是沿途的风景，在乎的是看风景的心情，旅行不会因为美丽的风景终止。走过的路成为背后的风景，不能回头不能停留，若此刻停留，将会错过更好的风景，保持一份平和，保持一份清醒。</p>
+			<h2 class="text-right"><a href="">more>></a></h2>
+			<div class="wel-grids">
+
+				#set(x = 0)
+				#for(sight : sight_recommendations)
+				<div class="col-md-3 wel-grid" style="width: 25%;">
+					<a href="/sight/showSight/#(sight.s_id)">
+						<img src="/travelSite/asserts/images/#(sight_images.get(x).getStr('s_image'))" class="img-responsive gray" alt="" style="height:150px;width:250px"/>
+					</a>
+					<a href="/sight/showSight/#(sight.s_id)">
+						<h4 class="text-center">#(sight.getStr("s_name"))</h4>
+					</a>
+					<div >
+						<p style="height:100px; overflow: hidden">#(sight.getStr("s_introduction"))</p>
+						<p style="text-align:left">...更多>></p>
+
+					</div>
+				</div>
+				#set(x = x + 1)
+				#if(x == 4)
+				#break
+				#end
+				#end
+				<div class="clearfix"></div>
+			</div>
 		</div>
-			<!---welcome--->
-			<div class="welcome">
-				<div class="container">
-					<h2 class="tittle">Welcome To Hotel</h2>
-						<p class="wel text">Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
-					<div class="wel-grids">
-						<div class="col-md-3 wel-grid">
-							<img src="/travelSite/asserts/images/w1.jpg" class="img-responsive gray" alt=""/>
-							<h4>Premier Suite</h4>
-							<p>Lorem ipsum dolor sit amet, consect adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.</p>
-						</div>
-						<div class="col-md-3 wel-grid">
-							<img src="/travelSite/asserts/images/w2.jpg" class="img-responsive gray" alt=""/>
-							<h4>Deluxe Suite</h4>
-							<p>Lorem ipsum dolor sit amet, consect adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.</p>
-						</div>
-						<div class="col-md-3 wel-grid">
-							<img src="/travelSite/asserts/images/w3.jpg" class="img-responsive gray" alt=""/>
-							<h4>Luxury Suite</h4>
-							<p>Lorem ipsum dolor sit amet, consect adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.</p>
-						</div>
-						<div class="col-md-3 wel-grid">
-							<img src="/travelSite/asserts/images/w4.jpg" class="img-responsive gray" alt=""/>
-							<h4>Spa Suite</h4>
-							<p>Lorem ipsum dolor sit amet, consect adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-			<!---welcome--->
-			<div class="resort-section">
-				<div class="container">
-					<h3 class="tittle">Resort latest <span>deals</span></h3>
-					<div class="resort-grids">
-				<!-- start content_slider -->
-						<div id="owl-demo" class="owl-carousel">
-					        <div class="item">
-					           <div class="col-md-6 cap-img">
-									<img src="/travelSite/asserts/images/p.jpg" class="img-responsive gray" alt=""/>
-								</div>
-								<div class="col-md-6 cap">
-									<h4>Surrounded By Custom Designed</h4>	
-									<ul class="cap1">
-										<li><i class="glyphicon glyphicon-map-marker"></i> 33 Street Name, City Name United States</li>
-										<li><i class="glyphicon glyphicon-plane"></i> US Airlines</li>
-										<li><i class="glyphicon glyphicon-road"></i> Free Transport</li>
-									</ul>										
-									<p>Duis at ante nec neque rhoncus pretium. Ut placerat euismod nibh industry's stand orci donec mollis, est non scelerisque blandit, velit nunc laoreet dol scrambled it to augue non elit aliquam in vehicula sem phasellu  consectetur adipiscing elit donec porttitor lectus at neque sollicitudin.</p>
-									<div class="detais">
-										<div class="col-md-9 deatils-left">
-											<div class="list">
-												<ul>
-													<li><i class="glyphicon glyphicon-thumbs-up"></i> Free Private Parking is Available</li>
-													<li><i class="glyphicon glyphicon-cutlery"></i> In Room Dining is Available 09:00 P.M. - 12:09 P.M.</li>
-													<li><i class="glyphicon glyphicon-signal"></i> Free High Speed Wi-Fi Internet in Room</li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-md-3 deatils-right">
-											<div class="detail-top">
-												<span>PER NIGHT</span>
-												<h4>$45</h4>
-											</div>
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-								</div>
-					            <div class="clearfix"> </div>
-					        </div>
-					        <div class="item">
-								<div class="col-md-6 cap-img">
-									<img src="/travelSite/asserts/images/p1.jpg" class="img-responsive gray" alt=""/>
-								</div>
-								<div class="col-md-6 cap">
-									<h4>Free High Speed Wi-Fi Internet in Room</h4>
-									<ul class="cap1">
-										<li><i class="glyphicon glyphicon-map-marker"></i> 33 Street Name, City Name United States</li>
-										<li><i class="glyphicon glyphicon-plane"></i> US Airlines</li>
-										<li><i class="glyphicon glyphicon-road"></i> Free Transport</li>
-									</ul>		
-									<p>Duis at ante nec neque rhoncus pretium. Ut placerat euismod nibh industry's stand orci donec mollis, est non scelerisque blandit, velit nunc laoreet dol scrambled it to augue non elit aliquam in vehicula sem phasellu  consectetur adipiscing elit donec porttitor lectus at neque sollicitudin.</p>
-									<div class="detais">
-										<div class="col-md-9 deatils-left">
-											<div class="list">
-												<ul>
-													<li><i class="glyphicon glyphicon-thumbs-up"></i> Free Private Parking is Available</li>
-													<li><i class="glyphicon glyphicon-cutlery"></i> In Room Dining is Available 09:00 P.M. - 12:09 P.M.</li>
-													<li><i class="glyphicon glyphicon-signal"></i> Free High Speed Wi-Fi Internet in Room</li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-md-3 deatils-right">
-											<div class="detail-top">
-												<span>PER NIGHT</span>
-												<h4>$45</h4>
-											</div>
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-								</div>
-					            <div class="clearfix"> </div>
-					        </div>
-					        <div class="item">
-					           <div class="col-md-6 cap-img">
-									<img src="/travelSite/asserts/images/p2.jpg" class="img-responsive gray" alt=""/>
-								</div>
-								<div class="col-md-6 cap">
-									<h4>Surrounded By Custom Designed</h4>	
-									<ul class="cap1">
-										<li><i class="glyphicon glyphicon-map-marker"></i> 33 Street Name, City Name United States</li>
-										<li><i class="glyphicon glyphicon-plane"></i> US Airlines</li>
-										<li><i class="glyphicon glyphicon-road"></i> Free Transport</li>
-									</ul>										
-									<p>Duis at ante nec neque rhoncus pretium. Ut placerat euismod nibh industry's stand orci donec mollis, est non scelerisque blandit, velit nunc laoreet dol scrambled it to augue non elit aliquam in vehicula sem phasellu  consectetur adipiscing elit donec porttitor lectus at neque sollicitudin.</p>
-									<div class="detais">
-										<div class="col-md-9 deatils-left">
-											<div class="list">
-												<ul>
-													<li><i class="glyphicon glyphicon-thumbs-up"></i> Free Private Parking is Available</li>
-													<li><i class="glyphicon glyphicon-cutlery"></i> In Room Dining is Available 09:00 P.M.-12:09 P.M.</li>
-													<li><i class="glyphicon glyphicon-signal"></i> Free High Speed Wi-Fi Internet in Room</li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-md-3 deatils-right">
-											<div class="detail-top">
-												<span>PER NIGHT</span>
-												<h4>$45</h4>
-											</div>
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-								</div>
-					            <div class="clearfix"> </div>
-					        </div>	
-				        </div>
-					</div>
-				</div>
-			</div>
-			<div class="superlist">
-				<div class="container">
-					<h3 class="tittle">Hand Picked by Superlist</h3>
-					<p class="wel text">Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
-					<div class="super-grids">
-						<div class="col-md-8 super-grid">
-							<div class="super-top">
-							<img src="/travelSite/asserts/images/s1.jpg" class="img-responsive gray" alt=""/>
+	</div>
+	<!---welcome--->
+	<div class="content">
+		<div class="resort-section">
+			<div class="container">
+				<h3 class="tittle">热门酒店</h3>
+				<div class="resort-grids">
+					<!-- start content_slider -->
+					<div id="owl-demo" class="owl-carousel">
+						#set(y = 0)
+						#for(hotel : hotel_recommendations)
+						<div class="item">
+							<div class="col-md-6 cap-img">
+								<a href="/hotel/ShowHotel/#(hotel.h_id)">
+									<img src="/travelSite/asserts/images/#(hotel_images.get(y).getStr('h_image'))" class="img-responsive gray" alt=""/>
+								</a>
 							</div>
-							<div class="super-bottom">
-								<div class="col-md-6 super-left">
-								<img src="/travelSite/asserts/images/s2.jpg" class="img-responsive gray" alt=""/>
+							<div class="col-md-6 cap">
+								<a href="/hotel/ShowHotel/#(hotel.h_id)">
+									<h4>#(hotel.getStr("h_name"))</h4>
+								</a>
+								<ul class="cap1">
+									<li><i class="glyphicon glyphicon-map-marker"></i> #(hotel.getStr("h_location"))</li>
+								</ul>
+								<p style="height:80px; overflow: hidden">#(hotel.getStr("h_introduction"))</p>
+								<p style="text-align:left">...更多>></p>
+								<div class="detais">
+									<div class="col-md-9 deatils-left">
+										<div class="list">
+											<ul>
+												<li><i class="glyphicon glyphicon-thumbs-up"></i> 提供免费的私人停车位</li>
+												<li><i class="glyphicon glyphicon-cutlery"></i> 午餐用餐时间：09:00 P.M. - 12:09 P.M.</li>
+												<li><i class="glyphicon glyphicon-signal"></i> 提供免费高速WiFi</li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-3 deatils-right" style="width: 25%">
+										<div class="detail-top">
+											<span>每日</span>
+											<h4>#(hotel.getInt("h_price"))元</h4>
+										</div>
+									</div>
+									<div class="clearfix"> </div>
 								</div>
-								<div class="col-md-6 super-right">
-								<img src="/travelSite/asserts/images/s3.jpg" class="img-responsive gray" alt=""/>
-								</div>
-								<div class="clearfix"></div>
 							</div>
+							<div class="clearfix"> </div>
 						</div>
-						<div class="col-md-4 super-grid1">
-							<div class="super-top">
-								<img src="/travelSite/asserts/images/s4.jpg" class="img-responsive gray" alt=""/>
-									<h4>Luxury Suite</h4>
-									<p>Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
-							</div>
-						</div>
-							<div class="clearfix"></div>
+						#set(y = y + 1)
+						#if(y == 4)
+						#break
+						#end
+						#end
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--footer-->
-	<#include "/travelSite/commonPart/footer.ftl" />
+
+	</div>
+	<!--footer-->
+	#include("/travelSite/commonPart/footer.ftl")
 	<!--footer-->
 </body>
 </html>
+

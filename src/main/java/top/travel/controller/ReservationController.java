@@ -24,7 +24,7 @@ public class ReservationController extends Controller {
         //再次查询信息，回到之前的页面
         HotelModel hotel = hotelService.findById(h_id);
         setAttr("hotel",hotel);
-        render("hotel.html");
+        render("showHotel.html");
     }
     //取消预订
     public void CancelReservation(){

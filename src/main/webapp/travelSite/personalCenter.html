@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Center</title>
+    <link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/travelSite/asserts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/travelSite/asserts/js/jquery.min.js"></script>
+    <script src="/travelSite/asserts/js/bootstrap.min.js"></script>
+    <style>
+        .mod_btn_1{
+            width: 100px;
+            text-align: center;
+            border: 1px solid #4cb6cb;
+            background-color: #4cb6cb;
+            color: #fff;
+            border-radius: 2px;
+            margin:120px 6px 0 50px;
+            padding: 0 20px;
+            height: 38px;
+            line-height: 38px;
+            display: block;
+            white-space: nowrap;
+            box-sizing: border-box;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .mod_btn_file{
+            position: absolute;
+            width: 100px;
+            height: 38px;
+            outline: none;
+            background-color: transparent;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body style=" background: url(/travelSite/asserts/images/setting.jpg) no-repeat center center fixed; background-size: 100%;">
+<section id="content">
+    <section class="vbox">
+        <!--可以添加的东西-->
+        <section class="scrollable">
+            <h2 style="padding:10px;padding-left:25px;color:black;padding-bottom:0px">个人设置</h2><hr/>
+            <div style="padding-top:0px;float:left;padding-left:40px;font-size:16px">
+                <form name="myform" method="post" action="/user/reviseUser" enctype="multipart/form-data" onsubmit="return Judgement()">
+                    <input type="hidden" name="u_image" value='#(session.currentUser.u_image)'/>
+                    <input type="hidden" name="u_admin" value='#(session.currentUser.u_admin)'/>
+                    <input type="hidden" name="u_pwd" value='#(session.currentUser.u_pwd)'>
+                    <ul style="padding:0;color:black">
+                        <li style="list-style:none;padding:10px">账号：
+                            #(session.currentUser.u_id)
+                        </li>
+                        <li style="list-style:none;padding:10px">
+                            昵称：<input style="width:200px;" name="u_name" id="u_name" value='#(session.currentUser.u_name)' required />
+                        </li>
+                        <li style="list-style:none;padding:10px">
+                            电话：<input style="width:200px;" name="u_phone" id="u_phone" value='#(session.currentUser.u_phone)' required />
+                        </li>
+                        <li style="list-style:none;padding:10px">
+                            <label >性别：</label>
+                            <select name="u_gender"  value='#(session.currentUser.u_gender)' style="width:50px;" >
+                                <option value="男">
+                                    男
+                                </option>
+                                <option value="女">
+                                    女
+                                </option>
+                            </select>
+                        </li>
+                        <li style="list-style:none;padding:10px">
+                            个人简介：<textarea style="width:200px;" name="u_abstract" id="u_abstract" value='#(session.currentUser.u_abstract)'></textarea>
+                        </li>
+                    </ul>
+
+                    <label style="float:left;margin-left:10px;color:black">更改头像：</label>
+
+                    <div id="showImg" style="float:left">
+                        <img id="format_Image" src='#(session.currentUser.u_image)'  style="width:150px;height:150px;float:left;border-radius:15px" alt="...">
+                    </div>
+
+                    <div class="mod_btn_1">
+                        <input type="file" name="image" id="image" onchange="verificationPicFile(this)" class="mod_btn_file"/>上传图片
+                    </div>
+                    <div style="width:200px;padding:0px;margin-left:0px;height:100px">
+                        <input style="margin:30px 0 0 50px;background:#4cb6cb;color:white;padding:6px 15px;width:240px;text-align:center;border: 1px solid #4cb6cb" type="submit" value="提交" />
+                    </div>
+                </form>
+            </div>
+
+        </section>
+        <!--可以添加的东西-->
+    </section>
+</section>
+</body>
+</html>
+<script>
+    function verificationPicFile(file) {
+        var fileTypes = [".jpg", ".png", ".gif", ".jpeg"];
+        var filePath = file.value;
+        var fileSize = 0;
+        var fileMaxSize = 10240;//5M
+        //当括号里面的值为0、空字符、false 、null 、undefined的时候就相当于false
+        if(filePath){
+            var isNext = false;
+            var fileEnd = filePath.substring(filePath.indexOf("."));
+            for (var i = 0; i < fileTypes.length; i++) {
+                if (fileTypes[i] == fileEnd) {
+                    isNext = true;
+                    break;
+                }
+            }
+            if (!isNext){
+                alert('请选择正确的文件类型！');
+                file.value = "";
+                return false;
+            }
+        }else {
+            return false;
+        }
+        if(filePath){
+            fileSize =file.files[0].size;
+            var size = fileSize / 1024;
+            if (size > fileMaxSize) {
+                alert("文件大小不能大于10M！");
+                file.value = "";
+                return false;
+            }else if (size <= 0) {
+                alert("文件大小不能为0M！");
+                file.value = "";
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+</script>
+<script type="text/javascript">
+    function ProcessFile(e) {
+        var file = document.getElementById('image').files[0];
+        if (file){
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var txt = event.target.result;
+
+                var img = document.createElement("img");
+                format_Image.src = txt;//将图片base64字符串赋值给img的src
+                // console.log(txt);
+                img.style.width='150px';
+                img.style.height='150px';
+
+                //document.getElementById("format_Image").style.display='none';
+                //document.getElementById("showImg").appendChild(img);
+            };
+        }
+        reader.readAsDataURL(file);
+    }
+
+    function contentLoaded() {
+        document.getElementById('image').addEventListener('change',
+            ProcessFile, false);
+    }
+    window.addEventListener("DOMContentLoaded", contentLoaded, false);
+</script>
+<script>
+    function Judgement(){
+        var u_name=document.getElementById("u_name").value;
+        if(u_name==""||u_name==null){
+            alert("昵称不能为空！");
+            return false;
+        }
+        else{
+            alert('修改成功！');
+            return true;
+        }
+    }
+</script>

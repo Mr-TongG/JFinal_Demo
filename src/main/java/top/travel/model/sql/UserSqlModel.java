@@ -27,6 +27,10 @@ public class UserSqlModel {
 				.set("u_pwd",password)
 				.set("u_phone",phone).save();
 	}
+	public boolean revise(String name ,String u_image){
+		int id = findByName(name).get(0).getInt("u_id");
+		return userModel.findById(id).set("u_name",name).set("u_image",u_image).update();
+	}
 
 	public boolean updateUser(String name,String phone,String gender,String content)
 	{

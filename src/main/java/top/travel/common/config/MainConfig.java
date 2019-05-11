@@ -17,12 +17,10 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
-import com.jfinal.render.ViewType;
 
-import top.travel.controller.HotelController;
-import top.travel.controller.ReservationController;
+import top.travel.controller.*;
+import top.travel.controller.index.FileUploadController;
 import top.travel.controller.index.IndexController;
-import top.travel.controller.SearchController;
 import top.travel.controller.index.LoginController;
 import top.travel.model.*;
 
@@ -86,10 +84,14 @@ public class MainConfig extends JFinalConfig {
 		//me.add("/home",HomePageController.class , "/static");
 		//从这里开始是旅游网站的控制路由
         me.add("/", IndexController.class ,"/travelSite");
+        me.add("/user", UserController.class,"/travelSite");
         me.add("/login" , LoginController.class ,"/travelSite");
 		me.add("/hotel", HotelController.class , "/travelSite");
+		me.add("/sight",SightController.class,"/travelSite");
         me.add("/reserve", ReservationController.class , "/travelSite");
         me.add("/search", SearchController.class,"/travelSite");
+        me.add("/image", ImageController.class,"/travelSite");
+        me.add("/upload", FileUploadController.class,"travelSite");
 		//me.add("/personal",PersonalController.class);
 	}
 	// 先加载开发环境配置，再追加生产环境的少量配置覆盖掉开发环境配置
@@ -157,7 +159,7 @@ public class MainConfig extends JFinalConfig {
 	 */
 	@Override
 	public void configInterceptor(Interceptors me) {
-		me.add(new SessionInViewInterceptor());
+		me.add(new SessionInViewInterceptor(true));
 		//me.add(new OverClassInterceptor());
 	}
 	/**
@@ -189,11 +191,13 @@ public class MainConfig extends JFinalConfig {
 	public void configEngine(Engine me) {
 		//配置模板支持热加载
 		me.setDevMode(p.getBoolean("engineDevMode", false));
-		//me.setDevMode(true);
+		me.setDevMode(true);
 		//这里只有选择JFinal TPL的时候才用
 		//配置共享函数模板
 		//me.addSharedFunction("/view/common/layout.html")
         me.addSharedFunction("/travelSite/commonPart/_paginate.html");
+		me.addDirective("hotel", HotelImageDirective.class);
+		me.addDirective("sight", SightImageDirective.class);
 	}
 	
 	public static void main(String[] args) {

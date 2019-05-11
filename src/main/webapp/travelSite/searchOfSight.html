@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gallery</title>
+<link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/travelSite/asserts/js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/travelSite/asserts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/travelSite/asserts/css/mystyle.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:title" content="Vide" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+	<meta name="viewport" content="width=1280(这里写你指定宽度)">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!---->
+<script src="/travelSite/asserts/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/travelSite/asserts/css/font-awesome.min.css">
+<!---->
+<link href="/travelSite/asserts/css/galleryeffect.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="/travelSite/asserts/css/flexslider.css" type="text/css" media="screen" />
+<link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
+</head>
+<style>
+
+	body{
+		margin:0px;
+		width:100%;
+		min-width:1280px;
+		max-width:100%;
+		height:100%;
+		background-color:#F0F0F0;
+	}
+	#head{
+		background-color:#FFFF00;
+		width:100%;
+		height:100px;
+	}
+	#center{
+		background-color:#00FFFF;
+		width:100%;
+		min-height:100%;
+	}
+	#foot{
+		background-color:#FF00FF;
+		width:100%;
+		height:100px;
+	}
+</style>
+<body>
+	<div class="banner">
+	</div>
+	#include("/travelSite/commonPart/header.html")
+<!-- gallery -->
+<div class="gallery">
+	<div class="container" style="white-space:nowrap;">
+			<h2 class="tittle">Welcome To Beijing!</h2>
+		<div class="gal-btm">
+			#if(sightPage)
+			#for(sight : sightPage.list)
+			<div class="col-md-4 gal-gd wow fadeInLeft animated" data-wow-delay=".5s">
+				<a href="/sight/showSight/#(sight.s_id)" >
+					<div class="nd-wrap nd-style-8">
+						#sight(sight.s_id)
+						<div class="nd-content">
+				<div class="nd-content_inner">
+					<div class="nd-content_inner1">
+						<h4 class="nd-title">#(sight.s_name)</h4>
+						<span class="nd-icon">
+							<i class="glyphicon glyphicon-link"></i>
+						</span>
+					</div>					
+				</div>				
+			</div>
+			</div>
+				</a>
+			</div>
+			#else
+			<h3 class="tittle" style="text-align: center">很抱歉，没有找到相关景点，换个关键词试试哦！</h3>
+			#end
+			#end
+			<div class="clearfix"></div>
+		</div>
+		<div style="text-align: center">#@paginate(sightPage.pageNumber,sightPage.totalPage,"/search/Search/")</div>
+	</div>
+</div>
+		<!--footer-->
+	#include("/travelSite/commonPart/footer.ftl")
+	<!--footer-->
+
+</body>
+</html>

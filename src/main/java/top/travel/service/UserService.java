@@ -57,4 +57,7 @@ public class UserService {
 	{
 		userSqlModel.updateUser(name, phone, gender, content);
 	}
+	public void revise(String u_name, String u_image){
+		userSqlModel.revise(u_name,u_image);
+	}
 }

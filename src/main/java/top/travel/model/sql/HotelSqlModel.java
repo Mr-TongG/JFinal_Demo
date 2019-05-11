@@ -56,6 +56,6 @@ public class HotelSqlModel {
    }
    //分页查询名字中包含condition的酒店
     public Page<HotelModel> queryBypaginate(int pageNumber , int pageSize , String keywords){
-        return hotelModel.paginate(pageNumber,pageSize,"select *","from hotel where h_name like concat('%', ?, '%')", keywords);
+        return hotelModel.paginate(pageNumber,pageSize,"select *","from hotel where h_name like ?","%"+keywords+"%");
     }
 }

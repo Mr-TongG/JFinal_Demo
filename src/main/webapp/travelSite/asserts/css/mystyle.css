@@ -1,0 +1,859 @@
+.brief-left {
+    float: left;
+    width: 500px;
+    height: 340px;
+}
+.detail-left .nav-tab-wrapper .selected {
+    height: 45px;
+    font-weight: 700;
+    border-top: 3px solid #41a5fa;
+    border-bottom-color: #fff;
+}
+.brief-right{
+    width:590px;
+    float:right;
+    height:380px;
+    padding:10px
+}
+.brief-right .spot-grade strong {
+    margin-right: 2px;
+    font: bold 12px Arial;
+    color: #f92727;
+}
+.brief-right .map-icon {
+    margin-left: 15px;
+}
+
+a {
+    color: #06c;
+    text-decoration: none;
+    outline: 0;
+}
+em {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+}
+.brief-right li em {
+    float: left;
+    margin-left: -75px;
+    width: 60px;
+    font-weight: 700;
+}
+li{
+    text-align: -webkit-match-parent;
+}
+.brief-right li {
+    margin-top: 20px;
+    padding-left: 75px;
+    width: 480px;
+    word-break: break-all;
+}
+.brief-right .timeLong {
+    height: 36px;
+}
+.brief-right .time {
+    position: relative;
+    max-height: 36px;
+}
+.brief-right .time span {
+    display: inline-block;
+    max-height: 36px;
+    overflow: hidden;
+}
+.brief-right .show-promise-detail {
+    display: inline-block;
+    position: relative;
+}
+.brief-right .promise span {
+    margin-right: 10px;
+    padding: 0 5px;
+    height: 18px;
+    line-height: 18px;
+    color: #19a0f0;
+    border: 1px solid #adddf2;
+    cursor: pointer;
+}
+.brief-right .score {
+    position: relative;
+    width: 480px;
+    height: 50px;
+    padding: 15px 0 7px 80px;
+    color: #06c;
+}
+.score-star {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -8px;
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    background: url(https://pages.c-ctrip.com/ticket/online/icon-score-bg.jpg?2019041717600) repeat;
+    background-size: 16px;
+}
+.score-star i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 96%;
+    height: 16px;
+    background: url(https://pages.c-ctrip.com/ticket/online/icon-score.jpg?2019041717600) repeat;
+    background-size: 16px;
+}
+.brief-right .total {
+    color: #666;
+    margin-right: 10px;
+}
+.brief-right .timeLong span:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    width: 20px;
+    height: 16px;
+    background: #fff url(https://pages.c-ctrip.com/ticket/online/ticket-detail.png?2019041717600);
+    background-repeat: no-repeat;
+    background-position: -170px 7px;
+    vertical-align: -2px;
+}
+.brief-right .score a {
+    position: relative;
+}
+ul li{
+    list-style: none;
+}
+a {
+    color: #06c;
+    text-decoration: none;
+    outline: 0;
+}
+.brief-right .comment:before {
+    background-position: -60px -15px;
+}
+.brief-right .comment:after, .brief-right .comment:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(https://pages.c-ctrip.com/ticket/online/ticket-detail.png?2019041717600);
+    background-repeat: no-repeat;
+}
+.brief-right .comment:after {
+    right: 30px;
+    bottom: 60px;
+    background-position: -86px -15px;
+}
+.brief-right .comment:after, .brief-right .comment:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(https://pages.c-ctrip.com/ticket/online/ticket-detail.png?2019041717600);
+    background-repeat: no-repeat;
+}
+.brief-right .last-comment .content {
+    position: relative;
+    padding: 0 30px;
+    max-height: 40px;
+    line-height: 20px;
+    overflow: hidden;
+}
+.brief-right .content .word {
+    float: right;
+    margin-left: -60px;
+    width: 100%;
+    position: relative;
+}
+.brief-right .content .empty {
+    float: right;
+    position: relative;
+    width: 60px;
+    height: 40px;
+    color: transparent;
+}
+.brief-right .content .more {
+    float: right;
+    padding-left: 2px;
+    width: 58px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    color: #45c3da;
+    background: #fff;
+    left: 100%;
+    -webkit-transform: translate(-100%,-100%);
+    cursor: pointer;
+}
+.brief-right .map-icon i {
+    width: 19px;
+    height: 16px;
+    vertical-align: -2px;
+    background-position: -35px -16px;
+}
+.brief-right ul i {
+    display: inline-block;
+    width: 10px;
+    height: 16px;
+    background: url(https://pages.c-ctrip.com/ticket/online/ticket-detail.png?2019041717600);
+    background-repeat: no-repeat;
+}
+.brief-right .map-icon {
+    margin-left: 15px;
+}
+.brief-right .content .more:after, .brief-right .content .more:before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 5px;
+    height: 5px;
+    border-left: 1px solid #45c3da;
+    border-bottom: 1px solid #45c3da;
+    -webkit-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+.brief-right .more i {
+    color: #333;
+}.brief-right .last-comment .from {
+     display: block;
+     margin-top: 5px;
+     text-align: right;
+ }
+
+.brief-right .last-comment .close-popup {
+    display: none;
+}.more:after {
+     right: 5px;
+ }
+.clearfix {
+}
+.clearfix:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    line-height: 0;
+}
+.detail-left {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+.detail-left .nav-tab-wrapper {
+    position: relative;
+    height: 49px;
+}
+.detail-left .nav-tab-stick {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.detail-left .nav-tab-wrapper {
+    position: relative;
+    height: 49px;
+}
+.detail-left .content-wrapper {
+    position: relative;
+    padding: 41px 48px 25px 48px;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    box-shadow: 1px 1px 1px #ebeef0;
+    -webkit-box-shadow: 1px 1px 1px #ebeef0;
+    border-top: 0;
+}
+.detail-left .introduce-label {
+    background-position: -205px -159px;
+}
+
+.detail-left .label {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    padding-left: 48px;
+    width: 80px;
+    height: 41px;
+    line-height: 41px;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    background-image: url(https://pages.c-ctrip.com/ticket/online/ticket-detail.png?2019041717600);
+    background-repeat: no-repeat;
+    background-color: #4eb6fb;
+}
+.detail-left .label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -24px;
+    border-top: 41px solid #83ccfc;
+    border-left: 12px solid #83ccfc;
+    border-right: 12px solid transparent;
+}
+.detail-left .label:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -12px;
+    border-top: 41px solid #4eb6fb;
+    border-right: 12.5px solid transparent;
+}
+.detail-left .introduce-feature {
+    margin-top: 20px;
+    overflow: hidden;
+}
+.detail-left .introduce-feature li {
+    margin-bottom: 10px;
+}
+.detail-left .introduce-feature .icon {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-right: 20px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ff9913;
+    border-radius: 3px;
+}
+.detail-left .introduce-content {
+    line-height: 22px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dotted #ccc;
+    overflow: hidden;
+}
+.detail-left .traffic-guide-label {
+    background-position: -205px -200px;
+}
+#mapDiv {
+    position: relative;
+    width: 100%;
+    height: 418px;
+    margin-top: 30px;
+    border: 1px solid #d7d7d7;
+}
+
+.detail-left .traffic-map-box {
+    position: relative;
+    width: 828px;
+    height: 418px;
+    margin-top: 30px;
+    border: 1px solid #d7d7d7;
+}
+
+.amap-container {
+    cursor: url(https://webapi.amap.com/theme/v1.3/openhand.cur),default;
+}
+.amap-container {
+    touch-action: none;
+    position: relative;
+    overflow: hidden;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAGXRFW…DoAKDQAQCFDgAodABAoQOAQgcAFDoA0Gj/LAMAAD/tvwADACFZc/6Ic+VNAAAAAElFTkSuQmCC) #fcf9f2;
+    -ms-touch-action: none;
+}
+.map_pop_loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding-top: 60px;
+    margin: -41px 0 0 -60px;
+    width: 120px;
+    height: 22px;
+    text-align: center;
+    font: 14px 'Microsoft YaHei',SimSun,Tahoma,Verdana,Arial,sans-serif;
+    font-weight: 700;
+    color: #5f5f5f;
+    background-image: url(https://pic.c-ctrip.com/ticketonline/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+.amap-e, .amap-layers, .amap-maps, .amap-tile, .amap-tile-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.amap-e, .amap-maps {
+    width: 100%;
+    height: 100%;
+}
+.amap-drags, .amap-layers {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+.amap-e, .amap-layers, .amap-maps, .amap-tile, .amap-tile-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.amap-drags, .amap-layers {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+.amap-info, .amap-markers {
+    z-index: 120;
+}
+
+.amap-context, .amap-graph, .amap-marker, .amap-markers, .amap-overlays, .amap-statics {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.amap-context, .amap-graph, .amap-marker, .amap-markers, .amap-overlays, .amap-statics {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.amap-overlays {
+    z-index: 110;
+    cursor: default;
+}
+.amap-info {
+    width: 320px;
+}
+
+.amap-info {
+    left: 0;
+}
+.amap-info, .amap-menu {
+    z-index: 140;
+    position: absolute;
+}
+.amap-info, .amap-markers {
+    z-index: 120;
+}
+.amap-controls {
+    z-index: 150;
+}
+.amap-toolbar {
+    position: absolute;
+    width: 52px;
+    overflow: visible;
+}
+
+.amap-maptypecontrol, .amap-overviewcontrol, .amap-scalecontrol, .amap-toolbar {
+    z-index: 150;
+}
+.amap-pancontrol {
+    width: 52px;
+    height: 52px;
+    position: absolute;
+}
+.amap-pan-left {
+    left: 8px;
+}
+
+.amap-pan-left, .amap-pan-right {
+    width: 12px;
+    height: 18px;
+    top: 17px;
+}
+.amap-pan-bottom, .amap-pan-top {
+    width: 18px;
+    height: 12px;
+    left: 17px;
+}
+
+.amap-pan-bottom, .amap-pan-left, .amap-pan-right, .amap-pan-top {
+    position: absolute;
+    cursor: pointer;
+}
+.amap-pan-left, .amap-pan-right {
+    width: 12px;
+    height: 18px;
+    top: 17px;
+}
+
+.amap-pan-bottom, .amap-pan-left, .amap-pan-right, .amap-pan-top {
+    position: absolute;
+    cursor: pointer;
+}
+.amap-pan-bottom, .amap-pan-top {
+    width: 18px;
+    height: 12px;
+    left: 17px;
+}
+
+.amap-pan-bottom, .amap-pan-left, .amap-pan-right, .amap-pan-top {
+    position: absolute;
+    cursor: pointer;
+}
+.amap-locate {
+    width: 18px;
+    height: 18px;
+
+    cursor: pointer;
+}
+
+.amap-locate, .amap-scalecontrol, .amap-toolbar-geo, .amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-labels, .amap-zoom-mask {
+    position: absolute;
+}
+.amap-zoomcontrol {
+    width: 24px;
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.amap-zoom-plus {
+    background-position: 0 -217px;
+}
+
+.amap-zoom-minus, .amap-zoom-plus {
+    width: 24px;
+    height: 21px;
+}
+.amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-minus, .amap-zoom-plus {
+
+    cursor: pointer;
+}
+.amap-zoom-ruler {
+    overflow: visible;
+    width: 12px;
+    height: 147px;
+    position: relative;
+    left: 6px;
+    background-position: 0 0;
+}
+
+.amap-zoom-mask, .amap-zoom-ruler {
+
+    cursor: pointer;
+}
+.amap-zoom-mask {
+    width: 12px;
+    height: 106px;
+    background-position: -14px 0;
+}
+
+.amap-locate, .amap-scalecontrol, .amap-toolbar-geo, .amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-labels, .amap-zoom-mask {
+    position: absolute;
+}
+.amap-zoom-cursor {
+    width: 24px;
+    height: 20px;
+    left: -6px;
+    top: 106px;
+    background-position: -127px -164px;
+}
+
+.amap-locate, .amap-scalecontrol, .amap-toolbar-geo, .amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-labels, .amap-zoom-mask {
+    position: absolute;
+}
+.amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-minus, .amap-zoom-plus {
+
+    cursor: pointer;
+}
+.amap-zoom-labels {
+    display: none;
+}
+.amap-zoom-label-street {
+    top: 0;
+    background-position: -87px -140px;
+}
+.amap-zoom-label-city {
+    top: 54px;
+    background-position: -87px -171px;
+}
+.amap-zoom-label-province {
+    top: 92px;
+    background-position: -87px -203px;
+}
+.amap-zoom-label-country {
+    top: 129px;
+    background-position: -87px -235px;
+}
+.amap-zoom-minus {
+    background-position: -26px -224px;
+}
+
+.amap-zoom-minus, .amap-zoom-plus {
+    width: 24px;
+    height: 21px;
+}
+.amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-minus, .amap-zoom-plus {
+
+    cursor: pointer;
+}
+.amap-scale-text {
+    text-align: center;
+    font-size: 10px;
+}
+.amap-scale-line {
+    position: relative;
+    height: 8px;
+}
+.amap-scale-line div {
+    -webkit-box-sizing: content-box!important;
+    -moz-box-sizing: content-box!important;
+    box-sizing: content-box!important;
+}
+
+.amap-scale-edgeleft, .amap-scale-edgeright {
+    width: 1px;
+    height: 6px;
+    border: 1px solid #fff;
+}
+.amap-scale-edgeleft, .amap-scale-edgeright, .amap-scale-middle {
+    position: absolute;
+    background-color: #333;
+    overflow: hidden;
+}
+.amap-scale-middle {
+    height: 2px;
+    left: 2px;
+    top: 2px;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+}
+.amap-copyright {
+    position: absolute;
+    display: block!important;
+    left: 77px;
+    height: 16px;
+    bottom: 0;
+    font-size: 11px;
+    padding-bottom: 2px;
+}
+.amap-copyright, .amap-logo {
+    position: absolute;
+    bottom: 1px;
+    z-index: 160;
+    height: 20px;
+    margin: 0 1px;
+}
+.amap-logo img {
+    width: 73px!important;
+    height: 20px!important;
+    border: none;
+    vertical-align: baseline!important;
+}
+
+.amap-container img {
+    max-width: none!important;
+    max-height: none!important;
+}
+
+
+
+.amap-copyright, .version {
+    font-family: Arial,sans-serif;
+}
+.detail-left .user-reviews-label {
+    background-position: -205px -241px;
+}
+.detail-left .t-comments {
+    padding: 18px 0 15px;
+    color: grey;
+}
+
+.t-comments {
+    padding: 18px 0 15px;
+    color: grey;
+}
+.detail-left .t-comments span {
+    color: #266ac9;
+    font: bold 30px/1.5 Arial,simsun,sans-serif;
+}
+
+.t-comments span {
+    color: #266ac9;
+    font: bold 30px/1.5 Arial,simsun,sans-serif;
+}
+.detail-left .comments {
+    min-height: 70px;
+    word-break: break-all;
+    margin: -1px 0 10px;
+    color: #666;
+    border-top: 1px dotted #d8d8d8;
+}
+
+.detail-left .comments h4 {
+    position: relative;
+    margin-top: 15px;
+    padding-left: 80px;
+    color: #06c;
+    font: bold 12px/1.5 'microsoft yahei';
+}
+
+.detail-left .comments p {
+    padding-top: 3px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.detail-left .comments .user-date {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    line-height: 22px;
+    margin-right: 20px;
+    color: #b5b5b5;
+    font-size: 12px;
+    font-weight: 400;
+}
+.pkg_pagevalue .pkg_page_num {
+    width: 36px;
+    height: 29px;
+    line-height: 29px;
+    padding: 3px;
+    border: 1px solid #ccc;
+    margin: 0 4px;
+    background: #fff;
+    box-shadow: 1px 1px 3px #ddd inset;
+}
+.comments {
+    min-height: 70px;
+    word-break: break-all;
+}
+.detail-left .comments li {
+    border-bottom: 1px dotted #d8d8d8;
+}
+.pkg_page {
+    text-align: right;
+    font-size: 14px;
+    height: 38px;
+    padding: 10px 0 30px;
+}
+.pkg_page a.up {
+    position: relative;
+}
+
+.pkg_page .nocurrent, .pkg_page .nocurrent:hover {
+    cursor: default;
+    border: 1px solid #ccc;
+    color: #ccc;
+}
+.pkg_page .up {
+    margin-right: 10px;
+}
+.pkg_page a {
+    display: inline-block;
+    float: none;
+    min-width: 36px;
+    padding: 0;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    color: #0065bb;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.pkg_page .current, .pkg_page .current:hover {
+    color: #fff;
+    border: 1px solid #3da0e7;
+    background-color: #64bbfa;
+    font-weight: 700;
+}
+
+.pkg_page a {
+    display: inline-block;
+    float: none;
+    min-width: 36px;
+    padding: 0;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    color: #0065bb;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.pkg_page_ellipsis {
+    display: inline-block;
+    float: none;
+    margin: 0 6px 0 3px;
+}
+.pkg_page a.down {
+    position: relative;
+}
+
+.pkg_page .down {
+    margin-left: 10px;
+    width: 62px;
+    font-size: 12px;
+    padding-right: 10px;
+}
+.pkg_page .down b {
+    border-width: 6px 0 6px 6px;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #0065bb;
+    margin-left: 6px;
+    position: absolute;
+    top: 13px;
+}
+
+.pkg_page .down b, .pkg_page .up b {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    vertical-align: -2px;
+}
+strong, b {
+    font-weight: bold;
+}
+.pkg_pagevalue {
+    display: inline-block;
+    float: none;
+    height: 40px;
+    vertical-align: middle;
+    margin-left: 20px;
+    line-height: 26px;
+}
+.pkg_page_submit {
+    display: inline-block;
+    width: 60px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 12px;
+    color: #0065bb;
+    margin-left: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.clearfix:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    line-height: 0;
+}
+.detail-right {
+    float: right;
+    width: 224px;
+    overflow: hidden;
+}
+.detail-left .nav-tab-wrapper li {
+    float: left;
+    width: 138px;
+    height: 47px;
+    line-height: 47px;
+    margin-right: -1px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    cursor: pointer;
+}

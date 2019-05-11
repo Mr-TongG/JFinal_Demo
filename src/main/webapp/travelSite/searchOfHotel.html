@@ -28,7 +28,7 @@
 <!---header--->
 <div class="resort-section">
     <div class="container">
-        #if(hotelPage.list?size != 0)
+        #if(hotelPage.list.size() != 0)
         <h3 class="tittle" >为您找到以下酒店</h3>
         #for(hotel : hotelPage.list)
         <div class="resort-grids">
@@ -37,9 +37,7 @@
                 <div class="item">
                     <div class="col-md-6 cap-img">
                         <a href="/hotel/ShowHotel/#(hotel.h_id)">
-
-                            <!--#include("/travelSite/commonPart/hotelImage.html")-->
-                            <img src="/travelSite/asserts/images/p.jpg" class="img-responsive gray" alt=""/>
+                            #hotel(hotel.h_id)
                         </a>
                     </div>
                     <div class="col-md-6 cap">
@@ -59,10 +57,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-3 deatils-right">
+                            <div class="col-md-3 deatils-right" style="width:25%">
                                 <div class="detail-top">
                                     <span>每  晚</span>
-                                    <h4>#(hotel.h_price+100)元起</h4>
+                                    <h4>#(hotel.h_price)元</h4>
                                 </div>
                             </div>
                             <div class="clearfix"> </div>
@@ -73,7 +71,7 @@
             </div>
         </div><hr/>
         #end
-    #@paginate(blogPage.pageNumber, blogPage.totalPage, "/search/paginate")
+    #@paginate(hotelPage.pageNumber, hotelPage.totalPage, "/search/Search/")
     #else
     <h3 class="tittle" style="text-align: center">很抱歉，没有找到相关酒店，换个关键词试试哦！</h3>
     #end
@@ -91,8 +89,9 @@
             #break
             #end
             <div class="col-md-3 wel-grid">
-                <a href="/hotel/ShowHotel/#(recommendation.h_id)"><img src="/travelSite/asserts/images/w1.jpg" class="img-responsive gray" alt=""/></a>
-                <a href="/hotel/ShowHotel/#(recommendation.h_id)"><h4>#(recommendation.h_name)</h4></a>
+                <a href="/hotel/ShowHotel/#(recommendation.h_id)">
+                    #hotel(recommendation.h_id)</a>
+                <a href="/hotel/ShowHotel"><h4>#(recommendation.h_name)</h4></a>
                 <p>#(recommendation.h_introduction)</p>
             </div>
             #end

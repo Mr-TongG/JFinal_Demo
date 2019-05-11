@@ -64,10 +64,10 @@
                         <ul class="nav navbar-nav">
                             <li><a data-hover="Home" href="/login/stepToUserIndex" >首页 </a></li>
                             <li><a data-hover="Sight" href="/travelSite/sight.html" >景点</a></li>
-                            <li><a data-hover="Hotel" href="/travelSite/hotel.html">酒店</a></li>
-                            <li><a data-hover="userHouse" href="/personal/stepToPersonal">个人中心</a></li>
+                            <li><a data-hover="Hotel" href="/travelSite/showHotel.html">酒店</a></li>
+                            <li><a data-hover="userHouse" href="/user/stepToPersonal/#(session.currentUser.u_id)">个人中心</a></li>
                             <li><a data-hover="exit" href="/">退出</a></li>
-                            <li><a data-hover="" >${session.currentUser.u_name}</a></li>
+                            <li><a data-hover="" >#(session.currentUser.u_name)</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -395,7 +395,7 @@
 			</div>
 		</div>
 		<!--footer-->
-	<#include "/travelSite/commonPart/footer.ftl" />
+	#include("/travelSite/commonPart/footer.ftl")
 	<!--footer-->
 </body>
 </html>

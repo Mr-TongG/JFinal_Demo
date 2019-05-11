@@ -38,7 +38,8 @@ public class LoginController extends Controller{
 		{
 			UserModel currentUser = userService.findByName(user).get(0);
 			setSessionAttr("currentUser",currentUser);
-			render("/travelSite/userIndex.html");//前往登录后用户主页
+			redirect("/");//登录后前往用户主页
+			//render("/travelSite/userIndex.html");//前往登录后用户主页
 		}
 		else
 		{
@@ -79,11 +80,10 @@ public class LoginController extends Controller{
 		String password = getPara("password");
 		String phone = getPara("phone");
 		//根据用户输入的账号进行数据库匹配
-		if(userService.registerCheck(user,password,phone))
+		if(userService.registerCheck(user,password,phone))//注册成功
 		{
-			UserModel currentUser = userService.findByName(user).get(0);
-			setSessionAttr("currentUser",currentUser);
-			render("/travelSite/userIndex.html");//前往登录界面
+			setAttr("content","");//不让前端显示异常
+			render("/travelSite/login.html");//前往登录界面
 		}
 		else
 		{

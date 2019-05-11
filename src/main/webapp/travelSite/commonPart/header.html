@@ -12,19 +12,23 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-brand logo">
-                            <h1><a href="index.html"><span>Travel  </span> Site</a></h1>
+                            <h1><a href="/"><span>Travel  </span> Site</a></h1>
                         </div>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="/travelSite/index.html" data-hover="Home">主页 </a></li>
-                            <li><a href="/travelSite/about.html" data-hover="About">About</a></li>
-                            <li class="active"><a data-hover="Restaurant" href="/travelSite/hotel.html">酒店</a></li>
-                            <li><a data-hover="Gallery" href="/travelSite/gallery.html">Gallery</a></li>
-                            <li><a data-hover="Rooms" href="/travelSite/rooms.html">Rooms</a></li>
+                            <li><a data-hover="Home" href="/" >首页 </a></li>
+                            <li><a data-hover="Sight" href="/sight/InitSight" >景点</a></li>
+                            <li><a data-hover="Hotel" href="/hotel/InitHotel">酒店</a></li>
+                            #if(session.currentUser == null)
                             <li><a data-hover="登陆" href="/login/stepToLogin">登录</a></li>
                             <li><a data-hover="注册" href="/login/stepToSignUp">注册</a></li>
+                            #else
+                            <li><a data-hover="userHouse" href="/user/stepToPersonal/#(session.currentUser.u_id)">个人中心</a></li>
+                            <li><a data-hover="exit" href="/">退出</a></li>
+                            <li><a data-hover="" >#(session.currentUser.u_name)</a></li>
+                            #end
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

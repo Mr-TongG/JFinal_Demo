@@ -22,6 +22,14 @@ public class HotelController extends Controller {
         setAttr("hotel",hotel);
         setAttr("hotelImages", hotelImages);
         //setAttr("hotelImage",hotelImage);
+        render("showHotel.html");
+    }
+    //在主页点击酒店时用这个替代一下
+    public void InitHotel(){
+        List<HotelModel> list_hotel = hotelService.searchHotel("酒店");
+        List<HotelModel> recommendations = hotelService.findAll();
+        setAttr("list_hotel",list_hotel);
+        setAttr("recommendations",recommendations);
         render("hotel.html");
     }
 }
