@@ -91,4 +91,9 @@ public class LoginController extends Controller{
 			render("/travelSite/signup.html");//重新注册
 		}
 	}
+	//退出
+	public void logout(){
+		removeSessionAttr("currentUser");
+		redirect("/");//前往主页
+	}
 }

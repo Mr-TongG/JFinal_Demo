@@ -24,14 +24,6 @@
 <script type="text/javascript" src="/travelSite/asserts/js/jquery.raty.min.js"></script>
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style type="text/css">
-		#iCenter {
-			width:350px;
-			height: 400px;
-			border:1px #000 solid;
-			margin:20px auto;
-		}
-</style>
 </head>
 <body>
 <div class="banner">
@@ -94,7 +86,7 @@
 													<a href="#introduction" class="nav-link">酒店简介</a>
 												</li>
 												<li>
-													<a href="#iCenter" class="nav-link">交通指南</a>
+													<a href="#map" class="nav-link">交通指南</a>
 												</li>
 												<li>
 													<a href="#installation" class="nav-link">酒店设施</a>
@@ -159,6 +151,10 @@
 								<h3>酒店介绍</h3>
 								<p>联系方式：#(hotel.h_phone)</p>&nbsp;&nbsp;
 								<p class="text-info" >&nbsp;&nbsp;&nbsp;&nbsp;#(hotel.h_introduction)</p>
+							</div>
+							<div id="map">
+								<h3 style="padding-top: 20px">交通指南</h3>
+								<div style="width:697px;height:418px;border:#ccc solid 1px;" id="dituContent"></div>
 							</div>
 							<div id="installation">
 								<h3 style="padding-top: 20px">酒店设施</h3>
@@ -243,13 +239,15 @@
 								</div>
 								<h5>房型:</h5>
 								<select class="sel1" required="">
-									<option value="">请选择</option>
+									<option value="" disabled>请选择</option>
 									<option value="">经济单人间</option>
 									<option value="">标准间</option>
 									<option value="">商务大床房</option>
 								</select>
-								<!--<input type="hidden" name="u_id" value="#(session.currentUser.u_id)" />-->
-								<input type="hidden" name="h_id" value="#(hotel.h_id)" />
+								#if(session.currentUser != null)
+								<input type="hidden" name="u_id" value='#(session.currentUser.u_id)' />
+								#end
+								<input type="hidden" name="h_id" value='#(hotel.h_id)' />
 								<div class="best-hot">
 									<input type="submit" value="提交预订">
 								</div>
@@ -257,7 +255,6 @@
 							</form>
 						</div>
 						<div class="col-md-4 rest-grid1">
-							<div id="iCenter"></div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -269,13 +266,22 @@
 	<!--footer-->
 </body>
 </html>
-<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.8&key=c3e0b1ffcdc7b94c33919ae4d1fa8379"></script>
+<style type="text/css">
+	html,body{margin:0;padding:0;}
+	.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+	.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 <script>
 	function Judgement() {
 		var startTime = $("#r_getInTime").val();
 		var start = new Date(startTime.replace("-", "/").replace("-", "/"));
 		var endTime = $("#r_getOutTime").val();
 		var end = new Date(endTime.replace("-", "/").replace("-", "/"));
+		#if(session.currentUser == null)
+			window.location.href="/login/stepToLogin";
+			return false;
+		#end
 		//比较时需要将对象进行转换
 		if (start < new Date()||start.getTime() == new Date().getTime()){
 			alert("订房时间错误");
@@ -292,43 +298,100 @@
 	}
 </script>
 <script type="text/javascript">
-	var mapObj = new AMap.Map('iCenter', {
-		zoom:11,//缩放级别
-		center: [116.397428, 39.90923],//地图显示中心点坐标，如果没有center属性，则会定位到你当前所处的位置
-		viewMode:'3D'//使用3D视图
-	});
-	mapObj.plugin('AMap.Geolocation', function () {
-		geolocation = new AMap.Geolocation({
-			enableHighAccuracy: true, // 是否使用高精度定位，默认:true
-			timeout: 10000,           // 超过10秒后停止定位，默认：无穷大
-			maximumAge: 0,            // 定位结果缓存0毫秒，默认：0
-			convert: true,            // 自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-			showButton: true,         // 显示定位按钮，默认：true
-			buttonPosition: 'LB',     // 定位按钮停靠位置，默认：'LB'，左下角
-			buttonOffset: new AMap.Pixel(10, 20), // 定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-			showMarker: true,         // 定位成功后在定位到的位置显示点标记，默认：true
-			showCircle: true,         // 定位成功后用圆圈表示定位精度范围，默认：true
-			panToLocation: true,      // 定位成功后将定位到的位置作为地图中心点，默认：true
-			zoomToAccuracy:true       // 定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-		});
-		mapObj.addControl(geolocation);
-		geolocation.getAttribLocation("");
-		AMap.event.addListener(geolocation, 'complete', onComplete); // 返回定位信息
-		AMap.event.addListener(geolocation, 'error', onError);       // 返回定位出错信息
-	});
-
-	function onComplete(obj){
-		var res = '经纬度：' + obj.position +
-				'\n精度范围：' + obj.accuracy +
-				'米\n定位结果的来源：' + obj.location_type +
-				'\n状态信息：' + obj.info +
-				'\n地址：' + obj.formattedAddress +
-				'\n地址信息：' + JSON.stringify(obj.addressComponent, null, 4);
-		alert(res);
+	//创建和初始化地图函数：
+	function initMap(){
+		createMap();//创建地图
+		setMapEvent();//设置地图事件
+		addMapControl();//向地图添加控件
+		addMarker();//向地图中添加marker
 	}
 
-	function onError(obj) {
-		alert(obj.info + '--' + obj.message);
-		console.log(obj);
+	//创建地图函数：
+	function createMap(){
+		var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+		//var point = new BMap.Point(116.396832,39.999271);//定义一个中心点坐标
+		var point = new BMap.Point('#(hotel.h_longitude)','#(hotel.h_latitude)');//定义一个中心点坐标
+		map.centerAndZoom(point,15);//设定地图的中心点和坐标并将地图显示在地图容器中
+		window.map = map;//将map变量存储在全局
 	}
+
+	//地图事件设置函数：
+	function setMapEvent(){
+		map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+		map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+		map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+		map.enableKeyboard();//启用键盘上下左右键移动地图
+	}
+
+	//地图控件添加函数：
+	function addMapControl(){
+		//向地图中添加缩放控件
+		var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+		map.addControl(ctrl_nav);
+		//向地图中添加缩略图控件
+		var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+		map.addControl(ctrl_ove);
+		//向地图中添加比例尺控件
+		var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+		map.addControl(ctrl_sca);
+	}
+
+	//标注点数组
+	var markerArr = [{title:'#(hotel.h_name)',content:'#(hotel.h_location)',point:"#(hotel.h_longitude)|#(hotel.h_latitude)",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+	];
+	//创建marker
+	function addMarker(){
+		for(var i=0;i<markerArr.length;i++){
+			var json = markerArr[i];
+			var p0 = json.point.split("|")[0];
+			var p1 = json.point.split("|")[1];
+			var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+			var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+			map.addOverlay(marker);
+			label.setStyle({
+				borderColor:"#808080",
+				color:"#333",
+				cursor:"pointer"
+			});
+
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+					this.openInfoWindow(_iw);
+				});
+				_iw.addEventListener("open",function(){
+					_marker.getLabel().hide();
+				})
+				_iw.addEventListener("close",function(){
+					_marker.getLabel().show();
+				})
+				label.addEventListener("click",function(){
+					_marker.openInfoWindow(_iw);
+				})
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+		}
+	}
+	//创建InfoWindow
+	function createInfoWindow(i){
+		var json = markerArr[i];
+		var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+		return iw;
+	}
+	//创建一个Icon
+	function createIcon(json){
+		var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+		return icon;
+	}
+
+	initMap();//创建和初始化地图
 </script>

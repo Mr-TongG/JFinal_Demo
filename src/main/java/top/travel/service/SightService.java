@@ -16,14 +16,14 @@ public class SightService {
     }
 
     public boolean updateById(int s_id, String s_name, int s_score, String s_location, String s_openTime,
-                              String s_phone, String s_introduction, String s_closeTime){
-        return SightSqlModel.updateById(s_id, s_name,s_score, s_location, s_openTime, s_phone, s_introduction,s_closeTime);
+                              String s_phone, String s_introduction, String s_closeTime, String s_longitude, String s_latitude){
+        return SightSqlModel.updateById(s_id, s_name,s_score, s_location, s_openTime, s_phone, s_introduction,s_closeTime,s_longitude,s_latitude);
     }
 
     public boolean insertHotel(int s_id, String s_name, int s_score, String s_location, String s_openTime,
-                               String s_phone, String s_introduction, String s_closeTime){
+                               String s_phone, String s_introduction, String s_closeTime, String s_longitude, String s_latitude){
         return SightSqlModel.insertSight(s_id,s_name,s_score, s_location, s_openTime,
-                s_phone, s_introduction,s_closeTime);
+                s_phone, s_introduction,s_closeTime,s_longitude,s_latitude);
     }
 
     public boolean deleteById(int id){

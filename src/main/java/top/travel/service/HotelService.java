@@ -17,13 +17,13 @@ public class HotelService {
     }
 
     public boolean updateById(int h_id, String h_name, int h_price, String h_location, int h_grade,
-                              float h_score, String h_introduction, int s_id, String h_phone){
-        return hotelSqlModel.updateById(h_id, h_name, h_price, h_location, h_grade, h_score, h_introduction, s_id, h_phone);
+                              float h_score, String h_introduction, int s_id, String h_phone, String h_longitude, String h_latitude){
+        return hotelSqlModel.updateById(h_id, h_name, h_price, h_location, h_grade, h_score, h_introduction, s_id, h_phone,h_longitude,h_latitude);
     }
 
     public boolean insertHotel(int h_id, String h_name, int h_price, String h_location, int h_grade,
-                               float h_score, String h_introduction, int s_id, String h_phone){
-        return hotelSqlModel.insertHotel(h_id, h_name, h_price, h_location, h_grade, h_score, h_introduction, s_id, h_phone);
+                               float h_score, String h_introduction, int s_id, String h_phone, String h_longitude, String h_latitude){
+        return hotelSqlModel.insertHotel(h_id, h_name, h_price, h_location, h_grade, h_score, h_introduction, s_id, h_phone,h_longitude,h_latitude);
     }
 
     public boolean deleteById(int id){

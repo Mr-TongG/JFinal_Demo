@@ -20,7 +20,7 @@ public class HotelSqlModel {
     }
 
     public boolean updateById(int h_id, String h_name, int h_price, String h_location, int h_grade,
-                                 float h_score, String h_introduction, int s_id, String h_phone){
+                                 float h_score, String h_introduction, int s_id, String h_phone, String h_longitude, String h_latitude){
         hotelModel.set("h_id",h_id);
         hotelModel.set("h_name",h_name);
         hotelModel.set("h_price",h_price);
@@ -30,11 +30,13 @@ public class HotelSqlModel {
         hotelModel.set("h_introduction",h_introduction);
         hotelModel.set("s_id",s_id);
         hotelModel.set("h_phone",h_phone);
+        hotelModel.set("h_longitude",h_longitude);
+        hotelModel.set("h_latitude",h_latitude);
         return hotelModel.update();
     }
     //插入的时候记得创建新的对象！！
     public boolean insertHotel(int h_id, String h_name, int h_price, String h_location, int h_grade,
-                               float h_score, String h_introduction, int s_id, String h_phone){
+                               float h_score, String h_introduction, int s_id, String h_phone, String h_longitude, String h_latitude){
         return new HotelModel().set("h_id",h_id)
         .set("h_name",h_name)
         .set("h_price",h_price)
@@ -44,6 +46,8 @@ public class HotelSqlModel {
         .set("h_introduction", h_introduction)
         .set("s_id", s_id)
         .set("h_phone",h_phone)
+        .set("h_longitude",h_longitude)
+        .set("h_latitude",h_latitude)
         .save();
     }
 

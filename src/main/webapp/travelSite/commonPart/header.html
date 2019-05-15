@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/travelSite/asserts/css/app.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/travelSite/asserts/css/simple-line-icons.css" type="text/css" media="screen" />
 <div class="header">
     <div class="container">
         <div class="header-menu">
@@ -25,9 +27,38 @@
                             <li><a data-hover="登陆" href="/login/stepToLogin">登录</a></li>
                             <li><a data-hover="注册" href="/login/stepToSignUp">注册</a></li>
                             #else
-                            <li><a data-hover="userHouse" href="/user/stepToPersonal/#(session.currentUser.u_id)">个人中心</a></li>
-                            <li><a data-hover="exit" href="/">退出</a></li>
-                            <li><a data-hover="" >#(session.currentUser.u_name)</a></li>
+                            <!--<li><a data-hover="userHouse" href="/user/stepToPersonal/#(session.currentUser.u_id)">个人中心</a></li>-->
+                            <!--<li><a data-hover="" >#(session.currentUser.u_name)</a></li>-->
+                            <div class="navbar-right">
+                                <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+                                    <li class="dropdown">
+                                        #if(session.currentUser != null)
+                                        <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                                            <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"><img src="/travelSite/asserts/images/#(session.currentUser.u_image)" alt="..."></span>
+                                            #(session.currentUser.u_name)
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu animated fadeInRight">
+                                            <li>
+                                                <a href="/user/stepToPersonal/#(session.currentUser.u_id)"><i class=" icon-equalizer icon text-primary-lter"></i>&nbsp;&nbsp;个人设置</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ><i class=" icon-disc icon text-primary-lter"></i>&nbsp;&nbsp;我的收藏</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ><i class=" icon-disc icon text-primary-lter"></i>&nbsp;&nbsp;我的评论</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ><i class=" icon-wrench icon text-primary-lter"></i>&nbsp;&nbsp;修改密码</a>
+                                            </li>
+                                            <li>
+                                                <a href="/login/logout"><i class=" icon-power icon text-primary-lter"></i>&nbsp;&nbsp;退出登录</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    #end
+                                </ul>
+                            </div>
                             #end
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -37,6 +68,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="content">
     <form action="/search/Search" method="post" role="form" class="form-inline">
         <div class="from-group" style="margin:20px 30px 30px 20px">

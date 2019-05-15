@@ -19,8 +19,11 @@ public class SightController extends Controller {
     //在主页点击景点时
     public void InitSight(){
         String keywords="";
+        String condition = "景点";
         Page<SightModel> sights = sightService.paginate(getParaToInt(0,1),pageSize,keywords);
         setAttr("sightPage",sights);
+        setSessionAttr("conditions",condition);//页面重用的时候防止出错
+        setSessionAttr("keywords",keywords);
         render("searchOfSight.html");
     }
 }
