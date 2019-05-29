@@ -37,4 +37,7 @@ public class SightService {
     public Page<SightModel> paginate(Integer pageNumber, int pageSize, String keywords) {
         return SightSqlModel.queryBypaginate(pageNumber,pageSize,keywords);
     }
+    public Page<SightModel> queryAll(int pageNumber , int pageSize){
+        return SightSqlModel.queryAll(pageNumber,pageSize);
+    }
 }

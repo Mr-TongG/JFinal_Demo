@@ -17,4 +17,8 @@ public class ReservationService {
     public boolean deleteReservation(int id){
         return reservationSqlModel.deleteReservation(id);
     }
+
+    public List<ReservationModel> findAllReservation(int id){
+        return reservationSqlModel.findAllReservation(id);
+    }
 }

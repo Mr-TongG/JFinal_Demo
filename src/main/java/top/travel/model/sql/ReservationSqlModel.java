@@ -27,4 +27,10 @@ public class ReservationSqlModel {
     public boolean deleteReservation(int id){
         return reservationModel.deleteById(id);
     }
+
+    //三表连接
+    public List<ReservationModel> findAllReservation(int id){
+        String sql = "select * from reservation inner join hotel on reservation.h_id = hotel.h_id inner join user on reservation.u_id = user.u_id where user.u_id =?";
+        return reservationModel.find(sql,id);
+    }
 }

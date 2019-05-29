@@ -9,10 +9,11 @@ import com.jfinal.template.stat.Scope;
 public class HotelImageDirective extends Directive {
 
     @Override
-    public void exec(Env env, Scope scope, Writer writer) {
+    public void exec(Env env, Scope scope, Writer writer) {  //同步方案
         String action = exprList.eval(scope).toString();
         System.out.println(action);
         String actionResult = HttpKit.get("http://localhost:8082/image/getHotelImage/" + action);
         write(writer, actionResult);
     }
+
 }

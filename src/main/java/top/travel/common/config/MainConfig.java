@@ -91,7 +91,8 @@ public class MainConfig extends JFinalConfig {
         me.add("/reserve", ReservationController.class , "/travelSite");
         me.add("/search", SearchController.class,"/travelSite");
         me.add("/image", ImageController.class,"/travelSite");
-        me.add("/upload", FileUploadController.class,"travelSite");
+        me.add("/comment",CommentController.class,"/travelSite");
+        me.add("/upload", FileUploadController.class,"/travelSite");
 		//me.add("/personal",PersonalController.class);
 	}
 	// 先加载开发环境配置，再追加生产环境的少量配置覆盖掉开发环境配置

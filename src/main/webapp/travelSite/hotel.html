@@ -42,7 +42,23 @@
 				<div class="item">
 					<div class="col-md-6 cap-img">
 						<a href="/hotel/ShowHotel/#(hotel.h_id)">
-							#hotel(hotel.h_id)
+							<div id="img#(x)"></div>
+                            <script>
+                                $(document).ready(function(){
+                                    //让 #action 指令只生成一断 ajax 异步请求后端 action 的 js 代码，让其异步加载 html 片段
+                                    $.ajax({     //将action包含的参数放进来
+										 url : "/image/getHotelImage/#(hotel.h_id)",
+                                        type : "GET",   //规定请求的类型（GET 或 POST）
+                                        cache : false,  //表示浏览器是否缓存被请求页面
+                                        dataType : "html",  //预期的服务器响应的数据类型
+                                        success : function(data){
+                                            // 得到当前位置的父标签，然后将 ajax 返回值插入进来
+											 //$(this).parent().append(data)
+											$("#img#(x)").html(data)
+                                        }
+                                    })
+                                });
+                            </script>
 						</a>
 					</div>
 					<div class="col-md-6 cap">

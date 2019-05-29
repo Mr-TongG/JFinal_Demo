@@ -62,4 +62,7 @@ public class HotelSqlModel {
     public Page<HotelModel> queryBypaginate(int pageNumber , int pageSize , String keywords){
         return hotelModel.paginate(pageNumber,pageSize,"select *","from hotel where h_name like ?","%"+keywords+"%");
     }
+    public Page<HotelModel> queryAll(int pageNumber , int pageSize){
+        return hotelModel.paginate(pageNumber,pageSize,"select *","from hotel");
+    }
 }

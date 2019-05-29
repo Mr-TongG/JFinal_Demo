@@ -37,4 +37,7 @@ public class HotelService {
         return hotelSqlModel.queryBypaginate(pageNumber,pageSize,keywords);
 
     }
+    public Page<HotelModel> queryAll(int pageNumber, int pageSize){
+        return hotelSqlModel.queryAll(pageNumber,pageSize);
+    }
 }

@@ -27,8 +27,6 @@
                             <li><a data-hover="登陆" href="/login/stepToLogin">登录</a></li>
                             <li><a data-hover="注册" href="/login/stepToSignUp">注册</a></li>
                             #else
-                            <!--<li><a data-hover="userHouse" href="/user/stepToPersonal/#(session.currentUser.u_id)">个人中心</a></li>-->
-                            <!--<li><a data-hover="" >#(session.currentUser.u_name)</a></li>-->
                             <div class="navbar-right">
                                 <ul class="nav navbar-nav m-n hidden-xs nav-user user">
                                     <li class="dropdown">
@@ -43,7 +41,7 @@
                                                 <a href="/user/stepToPersonal/#(session.currentUser.u_id)"><i class=" icon-equalizer icon text-primary-lter"></i>&nbsp;&nbsp;个人设置</a>
                                             </li>
                                             <li>
-                                                <a href="#" ><i class=" icon-disc icon text-primary-lter"></i>&nbsp;&nbsp;我的收藏</a>
+                                                <a href="/reserve/showReservation/#(session.currentUser.u_id)" ><i class=" icon-disc icon text-primary-lter"></i>&nbsp;&nbsp;我的预订</a>
                                             </li>
                                             <li>
                                                 <a href="#" ><i class=" icon-disc icon text-primary-lter"></i>&nbsp;&nbsp;我的评论</a>
@@ -51,6 +49,11 @@
                                             <li>
                                                 <a href="#" ><i class=" icon-wrench icon text-primary-lter"></i>&nbsp;&nbsp;修改密码</a>
                                             </li>
+                                            #if(session.currentUser.u_name == 'admin' && session.currentUser.u_id == 1)
+                                            <li>
+                                                <a href="#" ><i class=" icon-wrench icon text-primary-lter"></i>&nbsp;&nbsp;后台管理</a>
+                                            </li>
+                                            #end
                                             <li>
                                                 <a href="/login/logout"><i class=" icon-power icon text-primary-lter"></i>&nbsp;&nbsp;退出登录</a>
                                             </li>

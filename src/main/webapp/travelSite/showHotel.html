@@ -22,8 +22,16 @@
 <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="/travelSite/asserts/js/jquery.raty.min.js"></script>
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+		.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$("#l0").addClass("active");
+			$("#m0").addClass("active");
+		});
+	</script>
 </head>
 <body>
 <div class="banner">
@@ -56,12 +64,7 @@
 										</div>
 										#set(y = y+1)
 										#end
-										<script>
-											$(document).ready(function(){
-												$("#l0").addClass("active");
-												$("#m0").addClass("active");
-											});
-										</script>
+
 									</div>
 									<!-- 轮播（Carousel）导航 -->
 									<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -202,7 +205,7 @@
 							</div>
 							<div id="comment">
 								<h3 style="padding-top: 20px">住客点评</h3>
-								<div id="star" data-score="4.5"></div>
+								<div id="star" data-score="#(hotel.h_score)"></div>
 								<script>
 									$.fn.raty.defaults.path = '/travelSite/asserts/images';
 									$('#star').raty({
@@ -212,6 +215,28 @@
 									});
 								</script>
 								<span>点评均来自真实入住客人！</span>
+								<form method="post" action="#" class="form-inline" onsubmit="return Judge()">
+									<div class="form-group">
+										<input type="hidden" name="u_id" value="#(session.currentUser.u_id)"/>
+										<input type="hidden" name="h_id" value="#(hotel.h_id)"/>
+										<textarea type="text" class="form-control" name="h_comment" placeholder="留下你的精彩评论吧" style="width: 500px; height: 60px;margin-right: 50px"></textarea>
+										<button class="btn btn-info btn-success" type="submit">提交</button>
+									</div>
+								</form>
+								<script>
+									function Judge() {
+									#if(session.currentUser == null)
+										window.location.href="/login/stepToLogin";
+										return false;
+									#else
+										alert("评论成功");
+										return true
+									#end
+									}
+								</script>
+							</div>
+							<div>
+
 							</div>
 
 						</div>
@@ -266,11 +291,6 @@
 	<!--footer-->
 </body>
 </html>
-<style type="text/css">
-	html,body{margin:0;padding:0;}
-	.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-	.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
-</style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 <script>
 	function Judgement() {

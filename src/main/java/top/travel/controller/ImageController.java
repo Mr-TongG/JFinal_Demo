@@ -15,6 +15,7 @@ public class ImageController extends Controller{
     public void getHotelImage() {
         int id = getParaToInt();
         //搜索时用第一张图片替代
+        System.out.println(id);
         HotelImageModel hotelImage = imageService.findAnHotelImage(id).get(0);
         setAttr("hotelImage",hotelImage);
         render("commonPart/hotelImage.html");

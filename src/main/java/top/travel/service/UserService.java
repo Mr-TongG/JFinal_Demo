@@ -2,6 +2,7 @@ package top.travel.service;
 
 import java.util.List;
 
+import com.jfinal.plugin.activerecord.Page;
 import top.travel.model.UserModel;
 import top.travel.model.sql.UserSqlModel;
 
@@ -57,7 +58,17 @@ public class UserService {
 	{
 		userSqlModel.updateUser(name, phone, gender, content);
 	}
-	public void revise(String u_name, String u_image){
-		userSqlModel.revise(u_name,u_image);
+	public void revise(int id, String u_image){
+		userSqlModel.revise(id,u_image);
+	}
+	//后台管理
+	public Page<UserModel> queryAll(int pageNumber , int pageSize){
+		return userSqlModel.queryAll(pageNumber,pageSize);
+	}
+	public Page<UserModel> queryByCondition(int pageNumber , int pageSize , String keywords){
+		return userSqlModel.queryByCondition(pageNumber,pageSize,keywords);
+	}
+	public boolean deleteUser(int id){
+		return userSqlModel.deleteUser(id);
 	}
 }

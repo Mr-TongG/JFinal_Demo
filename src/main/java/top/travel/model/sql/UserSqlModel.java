@@ -2,6 +2,7 @@ package top.travel.model.sql;
 
 import java.util.List;
 
+import com.jfinal.plugin.activerecord.Page;
 import top.travel.model.UserModel;
 
 public class UserSqlModel {
@@ -10,7 +11,6 @@ public class UserSqlModel {
 	{
 		return userModel.find("select * from user");
 	}
-
 	public List<UserModel> findByName(String name)//根据用户名找到用户信息
 	{
 		return userModel.find("select * from user where u_name = '"+name+"'");
@@ -18,7 +18,7 @@ public class UserSqlModel {
 
 	public List<UserModel> findById(int id)//根据用户编号找到用户信息
 	{
-		return userModel.find("select * from user where u_id = "+id);
+		return userModel.find("select * from user where u_id ="+id);
 	}
 
 	public boolean insertUser(String name,String password,String phone)
@@ -27,9 +27,9 @@ public class UserSqlModel {
 				.set("u_pwd",password)
 				.set("u_phone",phone).save();
 	}
-	public boolean revise(String name ,String u_image){
-		int id = findByName(name).get(0).getInt("u_id");
-		return userModel.findById(id).set("u_name",name).set("u_image",u_image).update();
+	public boolean revise(int id ,String u_image){
+		System.out.println(id);
+		return userModel.findById(id).set("u_image",u_image).update();
 	}
 
 	public boolean updateUser(String name,String phone,String gender,String content)
@@ -37,5 +37,15 @@ public class UserSqlModel {
 		int id = findByName(name).get(0).getInt("u_id");
 		userModel.findById(id).set("u_name", name).set("u_phone", phone).set("u_gender", gender).set("u_abstract", content);
 		return userModel.update();
+	}
+	public boolean deleteUser(int id){
+		return userModel.deleteById(id);
+	}
+	//后台管理时候用到
+	public Page<UserModel> queryAll(int pageNumber , int pageSize){
+		return userModel.paginate(pageNumber,pageSize,"select *","from user");
+	}
+	public Page<UserModel> queryByCondition(int pageNumber , int pageSize , String keywords){
+		return userModel.paginate(pageNumber,pageSize,"select *","from user where u_name like ?","%"+keywords+"%");
 	}
 }

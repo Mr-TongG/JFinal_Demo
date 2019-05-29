@@ -42,7 +42,8 @@
         <section class="scrollable">
             <h2 style="padding:10px;padding-left:25px;color:black;padding-bottom:0px">个人设置</h2><hr/>
             <div style="padding-top:0px;float:left;padding-left:40px;font-size:16px">
-                <form name="myform" method="post" action="/user/reviseUser" enctype="multipart/form-data" onsubmit="return Judgement()">
+                <form name="myform" method="post" action="/upload/upload" enctype="multipart/form-data" onsubmit="return Judgement()">
+                    <input type="hidden" name="u_id" value='#(session.currentUser.u_id)'/>
                     <input type="hidden" name="u_image" value='#(session.currentUser.u_image)'/>
                     <input type="hidden" name="u_admin" value='#(session.currentUser.u_admin)'/>
                     <input type="hidden" name="u_pwd" value='#(session.currentUser.u_pwd)'>
@@ -79,7 +80,7 @@
                     </div>
 
                     <div class="mod_btn_1">
-                        <input type="file" name="image" id="image" onchange="verificationPicFile(this)" class="mod_btn_file"/>上传图片
+                        <input type="file" name="u_image" id="image" onchange="verificationPicFile(this)" class="mod_btn_file"/>上传图片
                     </div>
                     <div style="width:200px;padding:0px;margin-left:0px;height:100px">
                         <input style="margin:30px 0 0 50px;background:#4cb6cb;color:white;padding:6px 15px;width:240px;text-align:center;border: 1px solid #4cb6cb" type="submit" value="提交" />

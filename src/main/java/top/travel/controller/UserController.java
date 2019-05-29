@@ -14,14 +14,14 @@ public class UserController extends Controller {
         render("personalCenter.html");
     }
     public void reviseUser(){
-        //int u_id = getParaToInt("u_id");
+        int u_id = getParaToInt("u_id");
         String u_name = getPara("u_name");
         String u_gender = getPara("u_gender");
         String u_pwd = getPara("u_pwd");
         String u_phone = getPara("u_phone");
         String u_abstract = getPara("u_abstract");
         String u_image = "";
-        userService.revise(u_name,u_image);
+        userService.revise(u_id,u_image);
         render("userIndex.html");
     }
 }

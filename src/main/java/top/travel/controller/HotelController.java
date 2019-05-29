@@ -1,8 +1,10 @@
 package top.travel.controller;
 
 import com.jfinal.core.Controller;
+import top.travel.model.HotelCommModel;
 import top.travel.model.HotelImageModel;
 import top.travel.model.HotelModel;
+import top.travel.service.CommentService;
 import top.travel.service.HotelService;
 import top.travel.service.ImageService;
 
@@ -11,6 +13,7 @@ import java.util.List;
 public class HotelController extends Controller {
     HotelService hotelService = new HotelService();
     ImageService imageService = new ImageService();
+    CommentService commentService = new CommentService();
 
     //点击一个旅馆，会进入该旅馆的详细页面
     public void ShowHotel(){
@@ -18,10 +21,10 @@ public class HotelController extends Controller {
         HotelModel hotel = hotelService.findById(id);
         //详细显示时显示全部的图片并进行轮播
         List<HotelImageModel> hotelImages = imageService.findAnHotelImage(id);
-        //HotelImageModel hotelImage = hotelImages.get(1);
+        List<HotelCommModel> hotelComment = commentService.showHotelComment(id);
         setAttr("hotel",hotel);
         setAttr("hotelImages", hotelImages);
-        //setAttr("hotelImage",hotelImage);
+        setAttr("hotelComment",hotelComment);
         render("showHotel.html");
     }
     //在主页点击酒店时用这个替代一下

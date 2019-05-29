@@ -60,4 +60,7 @@ public class SightSqlModel {
     public Page<SightModel> queryBypaginate(int pageNumber , int pageSize , String keywords){
         return SightModel.paginate(pageNumber,pageSize,"select *","from sight where s_name like ?","%"+keywords+"%");
     }
+    public Page<SightModel> queryAll(int pageNumber , int pageSize){
+        return SightModel.paginate(pageNumber,pageSize,"select *","from sight");
+    }
 }
