@@ -54,9 +54,36 @@ public class UserService {
 		}
 	}
 
-	public void update(String name,String phone,String gender,String content)
+	public boolean passwordCheck(String pwd)//密码规范判断
 	{
-		userSqlModel.updateUser(name, phone, gender, content);
+		if(pwd.length() >= 6 && pwd.length() <= 12)
+		{
+			for(int i = 0;i < pwd.length();i++)
+			{
+				if((pwd.charAt(i) >= 48 && pwd.charAt(i) <= 57)||(pwd.charAt(i) >= 65 && pwd.charAt(i) <= 90 )||(pwd.charAt(i) >= 97 && pwd.charAt(i) <= 122))
+				{
+
+				}
+				else
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public void update(int id,String name,String phone,String gender,String content,String image)
+	{
+		userSqlModel.updateUser(id,name, phone, gender, content ,image);
+	}
+
+	public void updatePwd(int id,String pwd)
+	{
+		userSqlModel.updatePwd(id, pwd);
 	}
 	public void revise(int id, String u_image){
 		userSqlModel.revise(id,u_image);
@@ -68,7 +95,11 @@ public class UserService {
 	public Page<UserModel> queryByCondition(int pageNumber , int pageSize , String keywords){
 		return userSqlModel.queryByCondition(pageNumber,pageSize,keywords);
 	}
-	public boolean deleteUser(int id){
+	public void backStageInsertUser(String name,String password,String phone,String gender,String image,String abstraction)
+	{
+		userSqlModel.backStageInsertUser(name, password, phone, gender, image, abstraction);
+	}
+	public boolean deleteById(int id){
 		return userSqlModel.deleteUser(id);
 	}
 }

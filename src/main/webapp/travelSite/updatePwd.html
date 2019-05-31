@@ -1,3 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Center</title>
+    <link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/travelSite/asserts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/travelSite/asserts/js/jquery.min.js"></script>
+    <script src="/travelSite/asserts/js/bootstrap.min.js"></script>
+    <style>
+        .mod_btn_1{
+            width: 100px;
+            text-align: center;
+            border: 1px solid #4cb6cb;
+            background-color: #4cb6cb;
+            color: #fff;
+            border-radius: 2px;
+            margin:120px 6px 0 50px;
+            padding: 0 20px;
+            height: 38px;
+            line-height: 38px;
+            display: block;
+            white-space: nowrap;
+            box-sizing: border-box;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .mod_btn_file{
+            position: absolute;
+            width: 100px;
+            height: 38px;
+            outline: none;
+            background-color: transparent;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body style=" background: url(/travelSite/asserts/images/timg.jpg) no-repeat center center ; background-size: 100%;">
+<div class="banner">
+	</div>
 <link rel="stylesheet" href="/travelSite/asserts/css/app.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/travelSite/asserts/css/simple-line-icons.css" type="text/css" media="screen" />
 <div class="header">
@@ -27,6 +67,8 @@
                             <li><a data-hover="登陆" href="/login/stepToLogin">登录</a></li>
                             <li><a data-hover="注册" href="/login/stepToSignUp">注册</a></li>
                             #else
+                            <!--<li><a data-hover="userHouse" href="/user/stepToPersonal/#(session.currentUser.u_id)">个人中心</a></li>-->
+                            <!--<li><a data-hover="" >#(session.currentUser.u_name)</a></li>-->
                             <div class="navbar-right">
                                 <ul class="nav navbar-nav m-n hidden-xs nav-user user">
                                     <li class="dropdown">
@@ -51,7 +93,7 @@
                                             </li>
                                             #if(session.currentUser.u_name == 'admin' && session.currentUser.u_id == 1)
                                             <li>
-                                                <a href="/gotoBackStage" ><i class=" icon-wrench icon text-primary-lter"></i>&nbsp;&nbsp;后台管理</a>
+                                                <a href="#" ><i class=" icon-wrench icon text-primary-lter"></i>&nbsp;&nbsp;后台管理</a>
                                             </li>
                                             #end
                                             <li>
@@ -72,18 +114,46 @@
     </div>
 </div>
 
-
-
-<div class="content">
-    <form action="/search/Search" method="post" role="form" class="form-inline">
-        <div class="from-group" style="margin:20px 30px 30px 20px">
-            <select class="selectpicker show-tick form-control" data-live-search="true" name="condition" style="width:100px" required="">
-                <option disabled>--请选择--</option>
-                <option>景点</option>
-                <option>酒店</option>
-            </select>
-            <input type="text" class="form-control" style="width: 300px" name="keywords" placeholder="请输入关键词" required="" />
-            <button class="btn btn-info btn-success" type="submit">查找</button>
-        </div>
-    </form>
-</div>
+<section id="content">
+    <section class="vbox">
+        <!--可以添加的东西-->
+        <section class="scrollable">
+            <h2 style="padding:10px;padding-left:25px;color:black;padding-bottom:0px">修改密码</h2><hr/>
+            <div class="modal-dialog">
+			<div class="modal-content" style="padding-top:0px;margin:0 auto;width:50%;font-size:16px;">
+			<form class="form-horizontal " name="myform" method="post" action="/user/updatePwd">
+				<input type="hidden" name="u_id" value='#(session.currentUser.u_id)'>
+				
+				<input type="hidden" name="u_pwd" value='#(session.currentUser.u_pwd)'>
+				<ul style="padding:0;color:black">
+                <li style="list-style:none;padding:30px 10px 10px 30px">
+                	<label class="form-control-label">请输入原密码：</label>
+                    <input class="form-control" style="width:200px;" type="password" name="o_pwd" id="o_pwd" required />
+                </li>
+                
+                <li style="list-style:none;padding:20px 10px 10px 30px">
+                	<label class="form-control-label">请输入新密码：</label>
+                    <input class="form-control" style="width:200px;" type="password" name="n_pwd" id="n_pwd" required />
+                </li>
+                
+                <li style="list-style:none;padding:20px 10px 10px 30px">
+                	<label class="form-control-label">请确认新密码：</label>
+                    <input class="form-control" style="width:200px;" type="password" name="s_pwd" id="s_pwd" required />
+                </li>
+                </ul>
+                #if(content != null)
+				<div style="color:red">#(content)</div>
+				#end
+				
+				<div class="modal-footer" style="width:200px;padding:0px;margin:0 auto;height:100px">
+                        <input style="margin:30px 0 0 0;background:#4cb6cb;color:white;padding:6px 15px;width:200px;text-align:center;border: 1px solid #4cb6cb" type="submit" value="提交" />
+                    </div>
+			</form>
+			</div>
+			</div>
+        </section>
+        <!--可以添加的东西-->
+    </section>
+</section>
+</body>
+</html>

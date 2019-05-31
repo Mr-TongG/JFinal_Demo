@@ -16,4 +16,16 @@ public class ImageService {
     public List<HotelImageModel> findAnHotelImage(int id){
         return imageSqlModel.findAnHotelImage(id);
     }
+    public boolean insertHotelImage(String h_image, int h_id){
+        return imageSqlModel.insertHotelImage(h_image,h_id);
+    }
+    public boolean insertSightImage(String s_image, int s_id){
+        return imageSqlModel.insertSightImage(s_image,s_id);
+    }
+    public boolean deleteHotelImage(int id){
+        return imageSqlModel.deleteHotelImage(id);
+    }
+    public boolean deleteSightImage(int id){
+        return imageSqlModel.deleteSightImage(id);
+    }
 }

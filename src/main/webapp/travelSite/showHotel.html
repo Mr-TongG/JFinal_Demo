@@ -217,16 +217,32 @@
 								<span>点评均来自真实入住客人！</span>
 								<form method="post" action="#" class="form-inline" onsubmit="return Judge()">
 									<div class="form-group">
+										#if(session.currentUser != null)
 										<input type="hidden" name="u_id" value="#(session.currentUser.u_id)"/>
+										#end
 										<input type="hidden" name="h_id" value="#(hotel.h_id)"/>
 										<textarea type="text" class="form-control" name="h_comment" placeholder="留下你的精彩评论吧" style="width: 500px; height: 60px;margin-right: 50px"></textarea>
 										<button class="btn btn-info btn-success" type="submit">提交</button>
 									</div>
 								</form>
+								<div id="comments"></div>
+								<script>
+									$(document).ready(function(){
+										$.ajax({     //将action包含的参数放进来
+											url : "/comment/getHotelComment/#(hotel.h_id)",
+											type : "GET",   //规定请求的类型（GET 或 POST）
+											cache : false,  //表示浏览器是否缓存被请求页面
+											dataType : "html",  //预期的服务器响应的数据类型
+											success : function(data){
+												$("#comments").html(data)
+											}
+										})
+									});
+								</script>
 								<script>
 									function Judge() {
 									#if(session.currentUser == null)
-										window.location.href="/login/stepToLogin";
+										alert('登录之后才能发布评论！');
 										return false;
 									#else
 										alert("评论成功");
@@ -236,7 +252,6 @@
 								</script>
 							</div>
 							<div>
-
 							</div>
 
 						</div>

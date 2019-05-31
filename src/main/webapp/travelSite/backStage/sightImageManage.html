@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>景点图片管理</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/travelSite/backStage/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/travelSite/backStage/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="/travelSite/backStage/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/travelSite/backStage/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/travelSite/backStage/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/travelSite/backStage/img/favicon.ico">
+
+    <script src="/travelSite/asserts/js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      #include("/travelSite/backStage/commonPart/header.html")
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="/travelSite/asserts/images/#(session.currentUser.u_image)" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              #if(session.currentUser != null)
+              <h1 class="h4">#(session.currentUser.u_name)</h1>
+              <p>#(session.currentUser.u_abstract)</p>
+              #end
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <ul class="list-unstyled">
+            <li><a href="/backStage"> <i class="icon-home"></i>主页 </a></li>
+            <li><a href="/backStage/userManage"> <i class="icon-grid"></i>用户管理 </a></li>
+            <li><a href="/backStage/sightManage"> <i class="fa fa-bar-chart"></i>景点管理 </a></li>
+            <li><a href="/backStage/hotelManage"> <i class="icon-padnote"></i>酒店管理 </a></li>
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>图片管理 </a>
+              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li class="active"><a href="/backStage/sightImageManage/">景点图片管理</a></li>
+                <li><a href="/backStage/hotelImageManage/">酒店图片管理</a></li>
+              </ul>
+            </li>
+            <li><a href="/backStage/stepTologin"> <i class="icon-interface-windows"></i>登录 </a></li>
+          </ul>
+        </nav>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">景点图片</h2>
+            </div>
+          </header>
+          <!-- Charts Section-->
+          <section class="charts">
+            <div class="container-fluid">
+              <div class="row">
+                <!-- Line Charts-->
+                #set(x = 1)
+                #for(sight : sightPage.list)
+                <div class="col-lg-9" style="width: 70%">
+                  <div class="line-chart-example card">
+                    <a href="#"><i class="icon icon-check" data-toggle="modal" data-target="#myModal" style="margin-left: 700px"></i></a>
+                    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                      <div role="document" class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 id="exampleModalLabel" class="modal-title">添加景点图片</h4>
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="/image/insertSightImage/" method="post" enctype="multipart/form-data">
+                              <div class="form-group">
+                                <label>景点图片</label>
+                                <div id="showImg" style="padding:0 10px 0px 0px">
+                                  <img id="format_Image" src='/travelSite/asserts/images/'  style="width:150px;height:150px;float:left;border-radius:15px" alt="...">
+                                </div>
+                                <div class="mod_btn_1" style="padding:0px;margin:0 auto;">
+                                  <input type="file" name="s_image" id="image" onchange="verificationPicFile(this)" class="mod_btn_file" required/>
+                                </div>
+                              </div>
+                              <input type="hidden" name="s_id" value="#(sight.s_id)">
+                              <div class="form-group">
+                                <input type="submit" value="添加" class="btn btn-primary" required>
+                                <button type="button" data-dismiss="modal" class="btn btn-secondary" style="float: right">关闭</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">#(sight.s_name)</h3>
+                    </div>
+                    <div class="card-body" style="width: 900px">
+                      <div id="img#(x)"></div>
+                      <script>
+                          $.ajax({     //将action包含的参数放进来
+                            url : "/image/getAllSightImage/#(sight.s_id)",
+                            type : "GET",   //规定请求的类型（GET 或 POST）
+                            cache : false,  //表示浏览器是否缓存被请求页面
+                            dataType : "html",  //预期的服务器响应的数据类型
+                            success : function(data){
+                              $('#img#(x)').html($(data));
+                            }
+                          });
+                      </script>
+                    </div>
+                  </div>
+                </div>
+                #set(x = x+1)
+                #end
+                #@paginate(sightPage.pageNumber, sightPage.totalPage, "/backStage/sightImageManage/")
+              </div>
+            </div>
+          </section>
+          <!-- Page Footer-->
+          <footer class="main-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>中南财经政法大学 &copy; 2018-2019</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="/travelSite/backStage/vendor/jquery/jquery.min.js"></script>
+    <script src="/travelSite/backStage/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/travelSite/backStage/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/travelSite/backStage/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/travelSite/backStage/vendor/chart.js/Chart.min.js"></script>
+    <script src="/travelSite/backStage/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="/travelSite/backStage/js/charts-custom.js"></script>
+    <!-- Main File-->
+    <script src="/travelSite/backStage/js/front.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+  function ProcessFile(e) {
+    var file = document.getElementById('image').files[0];
+    if (file){
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var txt = event.target.result;
+
+        var img = document.createElement("img");
+        format_Image.src = txt;//将图片base64字符串赋值给img的src
+        // console.log(txt);
+        img.style.width='150px';
+        img.style.height='150px';
+
+        //document.getElementById("format_Image").style.display='none';
+        //document.getElementById("showImg").appendChild(img);
+      };
+    }
+    reader.readAsDataURL(file);
+  }
+
+  function contentLoaded() {
+    document.getElementById('image').addEventListener('change',
+            ProcessFile, false);
+  }
+  window.addEventListener("DOMContentLoaded", contentLoaded, false);
+</script>

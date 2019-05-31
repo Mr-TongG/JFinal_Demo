@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户管理</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/travelSite/backStage/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/travelSite/backStage/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="/travelSite/backStage/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/travelSite/backStage/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/travelSite/backStage/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/travelSite/backStage/img/favicon.ico">
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      #include("/travelSite/backStage/commonPart/header.html")
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="/travelSite/asserts/images/#(session.currentUser.u_image)" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              #if(session.currentUser != null)
+              <h1 class="h4">#(session.currentUser.u_name)</h1>
+              <p>#(session.currentUser.u_abstract)</p>
+              #end
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <ul class="list-unstyled">
+            <li><a href="/backStage"> <i class="icon-home"></i>主页 </a></li>
+            <li class="active"><a href="/backStage/userManage"> <i class="icon-grid"></i>用户管理 </a></li>
+            <li><a href="/backStage/sightManage"> <i class="fa fa-bar-chart"></i>景点管理 </a></li>
+            <li><a href="/backStage/hotelManage"> <i class="icon-padnote"></i>酒店管理 </a></li>
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>图片管理 </a>
+              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li class="active"><a href="/backStage/sightImageManage">景点图片管理</a></li>
+                <li><a href="/backStage/hotelImageManage">酒店图片管理</a></li>
+              </ul>
+            </li>
+            <li><a href="/backStage/stepTologin"> <i class="icon-interface-windows"></i>登录 </a></li>
+          </ul>
+        </nav>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">用户</h2>
+            </div>
+          </header>
+          <section class="tables">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="card" style="width: 900px">
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4" style="text-align: center">用户一览表</h3>
+                      <a href="#"><i class="icon icon-check" data-toggle="modal" data-target="#myModal" style="margin-left: 700px"></i></a>
+                      <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                        <div role="document" class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">添加用户</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="/user/insertUser" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                  <label>用户名</label>
+                                  <input type="text" placeholder="用户名" name="u_name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                  <label>密码</label>
+                                  <input type="password" placeholder="密码" name="u_password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                  <label>性别</label>
+                                  <select name="u_gender" style="width:50px;" >
+                                    <option value="男" selected="selected" > 男</option>
+                                    <option value="女"> 女</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label>联系方式</label>
+                                  <input type="text" placeholder="联系方式" name="u_phone" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                  <label>个人简介</label>
+                                  <input type="text" placeholder="个人简介" name="u_abstract" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                  <label>头像设置</label>
+                                  <div id="showImg" style="padding:0 10px 0px 0px">
+                                    <img id="format_Image" src='/travelSite/asserts/images/#(session.currentUser.u_image)'  style="width:150px;height:150px;float:left;border-radius:15px" alt="...">
+                                  </div>
+
+                                  <div class="mod_btn_1" style="padding:0px;margin:0 auto;">
+                                    <input type="file" name="u_image" id="image" onchange="verificationPicFile(this)" class="mod_btn_file" required/>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <input type="submit" value="添加" class="btn btn-primary" required>
+                                  <button type="button" data-dismiss="modal" class="btn btn-secondary" style="float: right">关闭</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table" style="width:900px">
+                          <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>用户名</th>
+                            <th>密码</th>
+                            <th>联系方式</th>
+                            <th>性别</th>
+                            <th>个人头像</th>
+                            <th>个人介绍</th>
+                            <th>操作</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          #for(user : userPage.list)
+                          <tr>
+                            <td>#(user.getInt("u_id"))</td>
+                            <td>#(user.getStr("u_name"))</td>
+                            <td>#(user.getStr("u_pwd"))</td>
+                            <td>#(user.getStr("u_phone"))</td>
+                            <td>#(user.getStr("u_gender"))</td>
+                            <td><img style="height:100px;width:100px" src='/travelSite/asserts/images/#(user.getStr("u_image"))'></img></td>
+                            <td>#(user.getStr("u_abstract"))</td>
+                            <td><a href="/user/deleteById/#(user.u_id)"><button class="btn btn-secondary" onclick="alert('你确定要删除吗？')">删除</button></a></td>
+                          </tr>
+                          #end
+                          </tbody>
+                        </table>
+                        #@paginate(userPage.pageNumber, userPage.totalPage, "/backStage/userManage/")
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Page Footer-->
+          <footer class="main-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>中南财经政法大学 &copy; 2018-2019</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="/travelSite/backStage/vendor/jquery/jquery.min.js"></script>
+    <script src="/travelSite/backStage/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/travelSite/backStage/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/travelSite/backStage/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/travelSite/backStage/vendor/chart.js/Chart.min.js"></script>
+    <script src="/travelSite/backStage/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="/travelSite/backStage/js/front.js"></script>
+  </body>
+</html>
+<script>
+  function verificationPicFile(file) {
+    var fileTypes = [".jpg", ".png", ".gif", ".jpeg"];
+    var filePath = file.value;
+    var fileSize = 0;
+    var fileMaxSize = 10240;//5M
+    //当括号里面的值为0、空字符、false 、null 、undefined的时候就相当于false
+    if(filePath){
+      var isNext = false;
+      var fileEnd = filePath.substring(filePath.indexOf("."));
+      for (var i = 0; i < fileTypes.length; i++) {
+        if (fileTypes[i] == fileEnd) {
+          isNext = true;
+          break;
+        }
+      }
+      if (!isNext){
+        alert('请选择正确的文件类型！');
+        file.value = "";
+        return false;
+      }
+    }else {
+      return false;
+    }
+    if(filePath){
+      fileSize =file.files[0].size;
+      var size = fileSize / 1024;
+      if (size > fileMaxSize) {
+        alert("文件大小不能大于10M！");
+        file.value = "";
+        return false;
+      }else if (size <= 0) {
+        alert("文件大小不能为0M！");
+        file.value = "";
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+</script>
+<script type="text/javascript">
+  function ProcessFile(e) {
+    var file = document.getElementById('image').files[0];
+    if (file){
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var txt = event.target.result;
+
+        var img = document.createElement("img");
+        format_Image.src = txt;//将图片base64字符串赋值给img的src
+        // console.log(txt);
+        img.style.width='150px';
+        img.style.height='150px';
+
+        //document.getElementById("format_Image").style.display='none';
+        //document.getElementById("showImg").appendChild(img);
+      };
+    }
+    reader.readAsDataURL(file);
+  }
+
+  function contentLoaded() {
+    document.getElementById('image').addEventListener('change',
+            ProcessFile, false);
+  }
+  window.addEventListener("DOMContentLoaded", contentLoaded, false);
+</script>

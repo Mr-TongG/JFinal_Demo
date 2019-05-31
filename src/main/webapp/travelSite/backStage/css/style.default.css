@@ -34,7 +34,7 @@ span:hover,
 span:focus {
   text-decoration: none;
 }
-
+a:hover{text-decoration: none}
 section {
   padding: 50px 0;
 }

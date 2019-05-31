@@ -19,35 +19,26 @@ public class HotelSqlModel {
         return hotelModel.findAll();
     }
 
-    public boolean updateById(int h_id, String h_name, int h_price, String h_location, int h_grade,
-                                 float h_score, String h_introduction, int s_id, String h_phone, String h_longitude, String h_latitude){
-        hotelModel.set("h_id",h_id);
-        hotelModel.set("h_name",h_name);
-        hotelModel.set("h_price",h_price);
-        hotelModel.set("h_location",h_location);
-        hotelModel.set("h_grade",h_grade);
-        hotelModel.set("h_score",h_score);
-        hotelModel.set("h_introduction",h_introduction);
-        hotelModel.set("s_id",s_id);
-        hotelModel.set("h_phone",h_phone);
-        hotelModel.set("h_longitude",h_longitude);
-        hotelModel.set("h_latitude",h_latitude);
-        return hotelModel.update();
+    public boolean updateById(int h_id,String h_name, int h_price, String h_location, int h_grade,
+                                 String h_introduction, String h_phone){
+        return hotelModel.findById(h_id)
+                .set("h_name",h_name)
+        .set("h_price",h_price)
+        .set("h_location",h_location)
+        .set("h_grade",h_grade)
+        .set("h_introduction",h_introduction)
+        .set("h_phone",h_phone).update();
     }
     //插入的时候记得创建新的对象！！
-    public boolean insertHotel(int h_id, String h_name, int h_price, String h_location, int h_grade,
-                               float h_score, String h_introduction, int s_id, String h_phone, String h_longitude, String h_latitude){
-        return new HotelModel().set("h_id",h_id)
+    public boolean insertHotel(String h_name, int h_price, String h_location, int h_grade,
+                               String h_introduction, String h_phone){
+        return new HotelModel()
         .set("h_name",h_name)
         .set("h_price",h_price)
         .set("h_location",h_location)
         .set("h_grade",h_grade)
-        .set("h_score",h_score)
         .set("h_introduction", h_introduction)
-        .set("s_id", s_id)
         .set("h_phone",h_phone)
-        .set("h_longitude",h_longitude)
-        .set("h_latitude",h_latitude)
         .save();
     }
 
@@ -58,7 +49,7 @@ public class HotelSqlModel {
    public List<HotelModel> searchHotel(String keywords){
         return hotelModel.find("select * from hotel where h_name like '%" + keywords + "%'");
    }
-   //分页查询名字中包含condition的酒店
+   //分页查询名字中包含keywords的酒店
     public Page<HotelModel> queryBypaginate(int pageNumber , int pageSize , String keywords){
         return hotelModel.paginate(pageNumber,pageSize,"select *","from hotel where h_name like ?","%"+keywords+"%");
     }

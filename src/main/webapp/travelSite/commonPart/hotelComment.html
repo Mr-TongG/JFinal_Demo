@@ -1,0 +1,12 @@
+#for(hotelComment : hotelCommentPage.list)
+<ul class="comments">
+    <li>
+        <p>#(hotelComment.h_comment)</p>
+        <div class="user-date"><span>
+									<!-- react-text: 1907 -->&nbsp;&nbsp;&nbsp;<!-- /react-text -->
+            <!-- react-text: 1908 -->#(hotelComment.time)<!-- /react-text --></span>
+        </div>
+    </li>
+</ul>
+#end
+<div style="text-align:left">#@paginate(hotelCommentPage.pageNumber,hotelCommentPage.totalPage,"/comment/getHotelComment/#(hotel.h_id)")</div><br/>

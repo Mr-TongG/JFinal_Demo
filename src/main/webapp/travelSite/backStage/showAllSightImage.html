@@ -1,0 +1,21 @@
+#for(sightImage : sightImages)
+<div style="float:left;">
+    <div class="col-md-4 gal-gd wow fadeInLeft animated" data-wow-delay=".5s" style="float: left;">
+        <a href="/image/deleteSightImage/#(sightImage.id)">
+            <div class="nd-wrap nd-style-8" style="width: 300px;height: 200px">
+                <img src="/travelSite/asserts/images/#(sightImage.s_image)" width="300px" height="200px" alt=""/>
+                <div class="nd-content">
+                    <div class="nd-content_inner">
+                        <div class="nd-content_inner1">
+                            <h4 class="nd-title">删除</h4>
+                            <span class="nd-icon">
+							<i class="glyphicon glyphicon-link"></i>
+						</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+#end

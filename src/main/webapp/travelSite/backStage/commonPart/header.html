@@ -1,0 +1,38 @@
+<header class="header">
+    <nav class="navbar">
+        <!-- Search Box-->
+        <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="/backStage/search" role="search" class="form-inline">
+                <div class="form-group">
+                    <select class="show-tick form-control" data-live-search="true" name="condition" style="width:100px" required="">
+                        <option disabled>--请选择--</option>
+                        <option>用户</option>
+                        <option>景点</option>
+                        <option>酒店</option>
+                    </select>
+                    <input type="search" name="keyword" placeholder="What are you looking for..." class="form-inline" required="">
+                </div>
+            </form>
+        </div>
+        <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+                <!-- Navbar Header-->
+                <div class="navbar-header">
+                    <!-- Navbar Brand --><a href="/backStage" class="navbar-brand d-none d-sm-inline-block">
+                    <div class="brand-text d-none d-lg-inline-block"><span>Travel </span><strong>Site</strong></div>
+                    <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
+                    <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+                </div>
+                <!-- Navbar Menu -->
+                <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                    <!-- Search-->
+                    <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                    <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner"></span></a></li>
+                    <!-- Logout    -->
+                    <li class="nav-item"><a href="/backStage/logout" class="nav-link logout"> <span class="d-none d-sm-inline">退出登录</span><i class="fa fa-sign-out"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

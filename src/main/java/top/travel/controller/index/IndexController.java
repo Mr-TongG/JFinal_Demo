@@ -50,4 +50,7 @@ public class IndexController extends Controller {
 			setAttr("sight_images",sight_images);
 			render("/travelSite/index.html");
 		}
+		public void gotoBackStage(){
+			redirect("/backStage/");
+		}
 }

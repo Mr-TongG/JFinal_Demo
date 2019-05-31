@@ -1,0 +1,12 @@
+#for(sightComment : sightCommentPage.list)
+<ul class="comments">
+    <li>
+        <p>#(sightComment.s_comment)</p>
+        <div class="user-date"><span>
+									<!-- react-text: 1907 -->&nbsp;&nbsp;&nbsp;<!-- /react-text -->
+            <!-- react-text: 1908 -->#(sightComment.time)<!-- /react-text --></span>
+        </div>
+    </li>
+</ul>
+#end
+<div style="text-align:left">#@paginate(sightCommentPage.pageNumber,sightCommentPage.totalPage,"/comment/getSightComment/#(sight.s_id)")</div><br/>

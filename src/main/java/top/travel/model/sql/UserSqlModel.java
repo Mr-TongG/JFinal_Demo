@@ -27,16 +27,28 @@ public class UserSqlModel {
 				.set("u_pwd",password)
 				.set("u_phone",phone).save();
 	}
+	public boolean backStageInsertUser(String name,String password,String phone,String gender,String image,String abstraction)
+	{
+		return new UserModel().set("u_name", name)
+				.set("u_pwd",password)
+				.set("u_phone",phone)
+				.set("u_gender",gender)
+				.set("u_image", image)
+				.set("u_abstract", abstraction).save();
+	}
 	public boolean revise(int id ,String u_image){
 		System.out.println(id);
 		return userModel.findById(id).set("u_image",u_image).update();
 	}
 
-	public boolean updateUser(String name,String phone,String gender,String content)
+	public boolean updateUser(int id,String name,String phone,String gender,String content,String u_image)
 	{
-		int id = findByName(name).get(0).getInt("u_id");
-		userModel.findById(id).set("u_name", name).set("u_phone", phone).set("u_gender", gender).set("u_abstract", content);
-		return userModel.update();
+		return userModel.findById(id).set("u_name", name).set("u_phone", phone).set("u_gender", gender).set("u_abstract", content).set("u_image",u_image).update();
+	}
+
+	public boolean updatePwd(int id,String pwd)
+	{
+		return userModel.findById(id).set("u_pwd", pwd).update();
 	}
 	public boolean deleteUser(int id){
 		return userModel.deleteById(id);

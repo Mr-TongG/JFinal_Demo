@@ -20,32 +20,26 @@ public class SightSqlModel {
         return SightModel.findAll();
     }
 
-    public boolean updateById(int s_id, String s_name, float s_score, String s_location, String s_introduce,
-                              String s_openTime, String s_phone, String s_closeTime, String s_longitude, String s_latitude){
-        SightModel.set("s_id",s_id);
-        SightModel.set("s_name",s_name);
-        SightModel.set("s_score",s_score);
-        SightModel.set("s_location",s_location);
-        SightModel.set("s_introduce",s_introduce);
-        SightModel.set("s_openTime",s_openTime);
-        SightModel.set("s_phone",s_phone);
-        SightModel.set("s_id",s_id);
-        SightModel.set("s_closeTime",s_closeTime);
-        SightModel.set("s_longitude",s_longitude);
-        SightModel.set("s_latitude",s_latitude);
-        return SightModel.update();
+    public boolean updateById(int s_id, String s_name, String s_location, String s_introduction,
+                              String s_openTime, String s_phone, String s_closeTime){
+        return SightModel.findById(s_id).set("s_id",s_id)
+        .set("s_name",s_name)
+        .set("s_location",s_location)
+        .set("s_introduction",s_introduction)
+        .set("s_openTime",s_openTime)
+        .set("s_phone",s_phone)
+        .set("s_id",s_id)
+        .set("s_closeTime",s_closeTime).update();
     }
 
-    public boolean insertSight(int s_id, String s_name, float s_score, String s_location, String s_introduce,
-                               String s_openTime, String s_phone, String s_closeTime, String s_longitude, String s_latitude){
-        return new SightModel().set("s_id",s_id)
+    public boolean insertSight(String s_name, String s_location, String s_introduction,
+                               String s_openTime, String s_phone, String s_closeTime){
+        return new SightModel()
                 .set("s_name",s_name)
-                .set("s_score",s_score)
                 .set("s_location",s_location)
-                .set("s_introduce",s_introduce)
+                .set("s_introduction",s_introduction)
                 .set("s_openTime",s_openTime)
                 .set("s_phone",s_phone)
-                .set("s_id",s_id)
                 .set("s_closeTime",s_closeTime)
                 .save();
     }
