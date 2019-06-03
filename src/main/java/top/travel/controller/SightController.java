@@ -16,7 +16,6 @@ public class SightController extends Controller {
     public void showSight(){
         int id = getParaToInt();
         SightModel sight = sightService.findById(id);
-        //Page<SightCommModel> sightCommModelPage = commentService.showSightComment(getParaToInt(0,1),pageSize+5,id);
         setAttr("sight",sight);
         //setAttr("sightCommentPage",sightCommModelPage);
         render("sight.html");

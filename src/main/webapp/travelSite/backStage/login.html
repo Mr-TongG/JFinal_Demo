@@ -48,7 +48,7 @@
                   #if(content != null)
                   #(content)
                   #end
-                  <form action="/backStage/loginIndex" method="post" class="form-validate">
+                  <form action="/backStage/login/" method="post" class="form-validate">
                     #if(session.currentUser != null)
                     <div class="form-group">
                       <input id="login-username" type="text" name="u_name" value="#(session.currentUser.u_name)" required data-msg="Please enter your username" class="input-material">

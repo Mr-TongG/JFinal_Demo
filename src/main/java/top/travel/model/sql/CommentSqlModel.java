@@ -24,7 +24,10 @@ public class CommentSqlModel {
         return hotelCommModel.find(sql,id);
     }*/
     public Page<HotelCommModel> showHotelComment(int pageNumber , int pageSize , int h_id){
-        return hotelCommModel.paginate(pageNumber,pageSize,"select *","from sight_comment inner join sight on sight_comment.s_id = sight.s_id where sight_comment.s_id =?",h_id);
+        String from = "from hotel_comment where h_id =?";
+        String totalRowSql = "select count(*) " + from;
+        String findSql = "select * " + from;
+        return hotelCommModel.paginateByFullSql(pageNumber,pageSize,totalRowSql,findSql,h_id);
     }
     public Page<SightCommModel> showSightComment(int pageNumber , int pageSize , int s_id){
         return sightCommModel.paginate(pageNumber,pageSize,"select *","from sight_comment inner join sight on sight_comment.s_id = sight.s_id where sight_comment.s_id =?",s_id);

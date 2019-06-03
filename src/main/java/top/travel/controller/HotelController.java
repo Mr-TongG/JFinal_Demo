@@ -23,7 +23,6 @@ public class HotelController extends Controller {
         HotelModel hotel = hotelService.findById(id);
         //详细显示时显示全部的图片并进行轮播
         List<HotelImageModel> hotelImages = imageService.findAnHotelImage(id);
-        //Page<HotelCommModel> hotelCommentPage = commentService.showHotelComment(getParaToInt(0,1),pageSize,id);
         setAttr("hotel",hotel);
         setAttr("hotelImages", hotelImages);
         //setAttr("hotelCommentPage",hotelCommentPage);

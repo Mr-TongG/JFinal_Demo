@@ -259,8 +259,9 @@
 						<script>
 							$(document).ready(function(){
 								$.ajax({     //将action包含的参数放进来
-									url : "/comment/getSightComment/#(sight.s_id)",
+									url : "/comment/getSightComment/",
 									type : "GET",   //规定请求的类型（GET 或 POST）
+									data: {s_id : #(sight.s_id)},
 									cache : false,  //表示浏览器是否缓存被请求页面
 									dataType : "html",  //预期的服务器响应的数据类型
 									success : function(data){
@@ -278,7 +279,6 @@
 							#else
 							<h3 class="tittle" style="text-align: center">登陆后可发表评论哦！</h3>
 							#end
-
 						</form>
 					</div>
 				</div>
