@@ -12,6 +12,7 @@ public class HotelService {
     public HotelModel findById(int id) {
         return hotelSqlModel.findById(id);
     }
+    public HotelModel findByName(String name){ return hotelSqlModel.findByName(name);}
     public List<HotelModel> findAll(){
         return hotelSqlModel.findAll();
     }

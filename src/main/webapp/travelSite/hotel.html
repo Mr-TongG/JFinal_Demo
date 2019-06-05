@@ -80,8 +80,7 @@
 							</div>
 							<div class="col-md-3 deatils-right" style="width:25%">
 								<div class="detail-top">
-									<span>每  晚</span>
-									<h4>#(hotel.h_price)元</h4>
+									<h4>#(hotel.h_price)元起</h4>
 								</div>
 							</div>
 							<div class="clearfix"> </div>
@@ -110,7 +109,8 @@
 			#end
 			<div class="col-md-3 wel-grid">
 				<a href="/hotel/ShowHotel/#(recommendation.h_id)">
-					#hotel(recommendation.h_id)</a>
+					#hotel(recommendation.h_id)
+				</a>
 				<a href="/hotel/ShowHotel"><h4>#(recommendation.h_name)</h4></a>
 				<p>#(recommendation.h_introduction)</p>
 			</div>

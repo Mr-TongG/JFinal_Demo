@@ -1,6 +1,7 @@
 package top.travel.model.sql;
 
 import com.jfinal.plugin.activerecord.Page;
+import top.travel.model.HotelModel;
 import top.travel.model.SightModel;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public class SightSqlModel {
         return SightModel.findById(id);
     }
 
+    public SightModel findByName(String name){ return SightModel.findFirst("select * from sight where s_name ='"+name+"'");}
+
     public List<SightModel> findAll(){
         return SightModel.findAll();
     }
@@ -28,7 +31,6 @@ public class SightSqlModel {
         .set("s_introduction",s_introduction)
         .set("s_openTime",s_openTime)
         .set("s_phone",s_phone)
-        .set("s_id",s_id)
         .set("s_closeTime",s_closeTime).update();
     }
 

@@ -15,6 +15,7 @@ public class HotelSqlModel {
     public HotelModel findById(int id){
         return hotelModel.findById(id);
     }
+    public HotelModel findByName(String name){ return hotelModel.findFirst("select * from hotel where h_name ='"+name+"'");}
     public List<HotelModel> findAll(){
         return hotelModel.findAll();
     }
@@ -22,7 +23,7 @@ public class HotelSqlModel {
     public boolean updateById(int h_id,String h_name, int h_price, String h_location, int h_grade,
                                  String h_introduction, String h_phone){
         return hotelModel.findById(h_id)
-                .set("h_name",h_name)
+        .set("h_name",h_name)
         .set("h_price",h_price)
         .set("h_location",h_location)
         .set("h_grade",h_grade)

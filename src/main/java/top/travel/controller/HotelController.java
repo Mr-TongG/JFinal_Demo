@@ -31,7 +31,7 @@ public class HotelController extends Controller {
     //在主页点击酒店时用这个替代一下
     public void InitHotel(){
         List<HotelModel> list_hotel = hotelService.searchHotel("酒店");
-        List<HotelModel> recommendations = hotelService.findAll();
+        List<HotelModel> recommendations = hotelService.findAll().subList(6,9);
         setAttr("list_hotel",list_hotel);
         setAttr("recommendations",recommendations);
         render("hotel.html");
@@ -44,7 +44,10 @@ public class HotelController extends Controller {
         String h_phone= getPara("h_phone");
         String h_location = getPara("h_location");
         String h_introduction = getPara("h_introduction");
+        String h_image = "hotel/toleration.jpg";
         hotelService.insertHotel(h_name,h_price,h_location,h_grade,h_introduction,h_phone);
+        int h_id = hotelService.findByName(h_name).getInt("h_id");
+        imageService.insertHotelImage(h_image,h_id);
         redirect("/backStage/hotelManage");
     }
     //后台删除酒店

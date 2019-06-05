@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Comment</title>
+	<link href="/travelSite/asserts/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/travelSite/asserts/js/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="/travelSite/asserts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/travelSite/asserts/css/mystyle.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta property="og:title" content="Vide" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!---->
+	<script src="/travelSite/asserts/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/travelSite/asserts/css/font-awesome.min.css">
+	<!---->
+	<link rel="stylesheet" href="/travelSite/asserts/css/flexslider.css" type="text/css" media="screen" />
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
+	<!---strat-date-piker---->
+</head>
+<body>
+	<div class="banner">
+	</div>
+	#include ("/travelSite/commonPart/header.html")
+		<!---header--->		
+		<div class="content">
+			<!---contact--->
+			<div style="padding-bottom: 4em">
+				<div class="container">
+                    <hr>
+                    #if(!sightCommentPage&&!hotelCommentPage)
+                    <h3 class="tittle" style="text-align: center">很抱歉，没有找到相关记录！</h3>
+                    #else
+
+                    <table class="table table-bordered table-hover text-center">
+                        <thead>
+                        <th style="text-align: center" width="5%">#</th>
+                        <th style="text-align: center" width="10%">评论对象</th>
+                        <th style="text-align: center"width="20%">评论时间</th>
+                        <th style="text-align: center" width="50%">评论内容</th>
+                        <th style="text-align: center" width="15%">操作</th>
+                        </thead>
+                        <tbody>
+                        #set(x = 1)
+                        #for(sightComments : sightCommentPage.list)
+                        <tr>
+                            <td>#(x)</td>
+                            <td>#(sightComments.s_name)</td>
+                            <td>#(sightComments.time)</td>
+                            <td>#(sightComments.s_comment)</td>
+                            <td>
+                                <a href="/comment/deleteSightComment?sc_id=#(sightComments.sc_id)"><button onclick="alert('你确定要删除吗？')" class="btn-success">删除评论</button></a>
+                            </td>
+                        </tr>
+                        #set(x = x+1)
+                        #end
+                        #set(x = x)
+                        #for(hotelComments : hotelCommentPage.list)
+                        <tr>
+                            <td>#(x)</td>
+                            <td>#(hotelComments.h_name)</td>
+                            <td>#(hotelComments.time)</td>
+                            <td>#(hotelComments.h_comment)</td>
+                            <td>
+                                <a href="/comment/deleteHotelComment?hc_id=#(hotelComments.hc_id)"><button onclick="alert('你确定要删除吗？')" class="btn-success">删除评论</button></a>
+                            </td>
+                        </tr>
+                        #set(x = x+1)
+                        #end
+                        </tbody>
+                    </table>
+                    #end
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!---contact--->
+		</div>
+		<!--footer-->
+    #include("/travelSite/commonPart/footer.ftl")
+	<!--footer-->
+
+</body>
+</html>

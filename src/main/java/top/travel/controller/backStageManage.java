@@ -2,9 +2,11 @@ package top.travel.controller;
 
 import com.jfinal.core.Controller;
 import top.travel.model.HotelModel;
+import top.travel.model.ReservationModel;
 import top.travel.model.SightModel;
 import top.travel.model.UserModel;
 import top.travel.service.HotelService;
+import top.travel.service.ReservationService;
 import top.travel.service.SightService;
 import top.travel.service.UserService;
 
@@ -14,14 +16,17 @@ public class backStageManage extends Controller {
     UserService userService = new UserService();
     SightService sightService = new SightService();
     HotelService hotelService = new HotelService();
+    ReservationService reservationService = new ReservationService();
     private final static int pageSize = 5;
     public void index(){
         List<UserModel> userModels = userService.findAll();
         List<SightModel> sightModels = sightService.findAll();
         List<HotelModel> hotelModels = hotelService.findAll();
+        List<ReservationModel> reservationModels = reservationService.findAll();
         setAttr("user_number",userModels.size());
         setAttr("hotel_number",hotelModels.size());
         setAttr("sight_number",sightModels.size());
+        setAttr("reservation_number",reservationModels.size());
         setAttr("list_hotel",hotelModels);
         setAttr("list_sight",sightModels);
         setAttr("list_user",userModels);
@@ -53,16 +58,16 @@ public class backStageManage extends Controller {
         //得到输入框中的账号 密码
         String user = getPara("u_name");
         String password = getPara("u_pwd");
+
         //根据用户输入的账号进行数据库匹配
-        if(userService.loginCheck(user,password))
+        if(userService.findByName(user).size() > 0 && userService.findByName(user).get(0).getInt("u_id") == 1 && userService.loginCheck(user,password))
         {
             UserModel currentUser = userService.findByName(user).get(0);
             setSessionAttr("currentUser",currentUser);
             redirect("/backStage/index");//登录后前往用户主页
         }
-        else
-        {
-            setAttr("content" , "用户名或密码错误");
+        else {
+            setAttr("content", "用户名或密码错误");
             render("login.html");//重新登录
         }
     }

@@ -21,11 +21,12 @@ public class UserSqlModel {
 		return userModel.find("select * from user where u_id ="+id);
 	}
 
-	public boolean insertUser(String name,String password,String phone)
+	public boolean insertUser(String name,String password,String phone,String u_image)
 	{
 		return new UserModel().set("u_name", name)
 				.set("u_pwd",password)
-				.set("u_phone",phone).save();
+				.set("u_phone",phone)
+				.set("u_image",u_image).save();
 	}
 	public boolean backStageInsertUser(String name,String password,String phone,String gender,String image,String abstraction)
 	{

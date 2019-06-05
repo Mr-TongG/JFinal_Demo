@@ -20,13 +20,21 @@ public class CommentController extends Controller {
     public static final int pageSize = 8;
     //用户查询评论
     public void getAllComment(){
-        int id = getParaToInt();
+        int id;
+        if(getPara("u_id")!=null) {
+            id = getParaToInt("u_id");
+            setSessionAttr("u_id", getPara("u_id"));
+        }
+        else
+            id=Integer.parseInt(getSessionAttr("u_id"));
+        System.out.println(id);
         Page<HotelCommModel> hotelCommModelPage = commentService.getHotelComment(getParaToInt(0,1),pageSize,id);
         Page<SightCommModel> sightCommModelPage = commentService.getSightComment(getParaToInt(0,1),pageSize,id);
         setAttr("hotelCommentPage",hotelCommModelPage);
         setAttr("sightCommentPage",sightCommModelPage);
-        render("myComment.html");
+        render("myComments.html");
     }
+    //详情页面展示评论
     public void getSightComment(){
         int id = getParaToInt("s_id");
         Page<SightCommModel> sightCommModelPage = commentService.showSightComment(getParaToInt(0,1),pageSize,id);
@@ -56,19 +64,19 @@ public class CommentController extends Controller {
         int s_id = getParaToInt("s_id");
         String s_comment = getPara("s_comment");
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
-        commentService.insertHotelComment(u_id,s_comment,s_id,time);
+        commentService.insertSightComment(u_id,s_comment,s_id,time);
         SightModel sight = sightService.findById(s_id);
         setAttr("sight",sight);
         render("sight.html");
     }
     public void deleteHotelComment(){
-        int id = getParaToInt();
-        commentService.deleteHotelComment(id);
+        int hc_id = getParaToInt("hc_id");
+        commentService.deleteHotelComment(hc_id);
         getAllComment();
     }
     public void deleteSightComment(){
-        int id = getParaToInt();
-        commentService.deleteSightComment(id);
+        int sc_id = getParaToInt("sc_id");
+        commentService.deleteSightComment(sc_id);
         getAllComment();
     }
 }

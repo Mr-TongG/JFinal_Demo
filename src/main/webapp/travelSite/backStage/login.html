@@ -45,9 +45,6 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  #if(content != null)
-                  #(content)
-                  #end
                   <form action="/backStage/login/" method="post" class="form-validate">
                     #if(session.currentUser != null)
                     <div class="form-group">
@@ -67,6 +64,9 @@
                       <input id="login-password2" type="password" name="u_pwd" required data-msg="Please enter your password" class="input-material">
                       <label for="login-password" class="label-material">密码</label>
                     </div>
+                    #end
+                    #if(content != null)
+                    #(content)
                     #end
                     <button type="submit" class="btn btn-primary">登录</button>
                     <!--<a id="login" href="index.html" class="btn btn-primary">登录</a>-->

@@ -49,7 +49,7 @@ public class UserService {
 		}
 		else
 		{
-			userSqlModel.insertUser(name, password, phone);
+			userSqlModel.insertUser(name, password, phone, "user/2.jpg");
 			return true;
 		}
 	}

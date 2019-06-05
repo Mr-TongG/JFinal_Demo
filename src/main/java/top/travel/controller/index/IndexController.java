@@ -27,20 +27,21 @@ public class IndexController extends Controller {
 		SightService sightService = new SightService();
 		ImageService imageService = new ImageService();
 		public void index() {
+			int number = 4;
 			List<HotelModel> hotel_recommendations = hotelService.findAll();
 			List<SightModel> sight_recommendations = sightService.findAll();
 			List<HotelImageModel> hotel_images = new ArrayList<>();
-			List<SightImageModel> sight_images = new ArrayList<>();;
+			List<SightImageModel> sight_images = new ArrayList<>();
 			setAttr("hotel_recommendations",hotel_recommendations);
 			setAttr("sight_recommendations",sight_recommendations);
-			for(int i = 0;i < hotel_recommendations.size();i++)
+			for(int i = 0;i < number;i++)
 			{
 				int id = hotel_recommendations.get(i).getInt("h_id");
 				HotelImageModel hotelImage = imageService.findAnHotelImage(id).get(0);
 				hotel_images.add(hotelImage);
 			}
 
-			for(int i = 0;i <sight_recommendations.size();i++)
+			for(int i = 0;i <number;i++)
 			{
 				int id = sight_recommendations.get(i).getInt("s_id");
 				SightImageModel sightImage = imageService.findAnSightImage(id).get(0);

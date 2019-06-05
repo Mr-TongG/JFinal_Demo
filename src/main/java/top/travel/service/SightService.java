@@ -10,20 +10,20 @@ public class SightService {
     public SightModel findById(int id) {
         return SightSqlModel.findById(id);
     }
-
+    public SightModel findByName(String name){ return SightSqlModel.findByName(name);}
     public List<SightModel> findAll(){
         return SightSqlModel.findAll();
     }
 
-    public boolean updateById(int s_id, String s_name, String s_location, String s_openTime,
-                              String s_phone, String s_introduction, String s_closeTime){
-        return SightSqlModel.updateById(s_id, s_name, s_location, s_openTime, s_phone, s_introduction,s_closeTime);
+    public boolean updateById(int s_id, String s_name, String s_location, String s_introduction,
+                              String s_openTime, String s_phone, String s_closeTime){
+        return SightSqlModel.updateById(s_id, s_name, s_location, s_introduction, s_openTime, s_phone, s_closeTime);
     }
 
-    public boolean insertSight(String s_name, String s_location, String s_openTime,
-                               String s_phone, String s_introduction, String s_closeTime){
-        return SightSqlModel.insertSight(s_name, s_location, s_openTime,
-                s_phone, s_introduction,s_closeTime);
+    public boolean insertSight(String s_name, String s_location, String s_introduction,
+                               String s_openTime, String s_phone, String s_closeTime){
+        return SightSqlModel.insertSight(s_name, s_location, s_introduction,
+                s_openTime, s_phone, s_closeTime);
     }
 
     public boolean deleteById(int id){

@@ -5,11 +5,13 @@ import com.jfinal.plugin.activerecord.Page;
 import top.travel.model.SightCommModel;
 import top.travel.model.SightModel;
 import top.travel.service.CommentService;
+import top.travel.service.ImageService;
 import top.travel.service.SightService;
 
 
 public class SightController extends Controller {
     SightService sightService = new SightService();
+    ImageService imageService = new ImageService();
     private final int pageSize = 3;      //每页数据条数
     CommentService commentService = new CommentService();
     //点击一个景点，会进入该景点的详细页面
@@ -30,7 +32,7 @@ public class SightController extends Controller {
         setSessionAttr("keywords",keywords);
         render("searchOfSight.html");
     }
-    //后台插入景点
+    //后台插入景点，给景点一张默认的图片
     public void insertSight(){
         String s_name = getPara("s_name");
         String s_phone= getPara("s_phone");
@@ -38,7 +40,10 @@ public class SightController extends Controller {
         String s_openTime = getPara("s_openTime");
         String s_closeTime = getPara("s_closeTime");
         String s_introduction = getPara("s_introduction");
-        sightService.insertSight(s_name,s_location,s_openTime,s_phone,s_introduction,s_closeTime);
+        String s_image = "sight/toleration.jpg";
+        sightService.insertSight(s_name,s_location,s_introduction,s_openTime,s_phone,s_closeTime);
+        int s_id = sightService.findByName(s_name).getInt("s_id");
+        imageService.insertSightImage(s_image,s_id);
         redirect("/backStage/sightManage");
     }
     //后台删除景点
@@ -56,7 +61,7 @@ public class SightController extends Controller {
         String s_openTime = getPara("s_openTime");
         String s_closeTime = getPara("s_closeTime");
         String s_introduction = getPara("s_introduction");
-        sightService.updateById(s_id,s_name,s_location,s_openTime,s_phone,s_introduction,s_closeTime);
+        sightService.updateById(s_id,s_name,s_location,s_introduction,s_openTime,s_phone,s_closeTime);
         redirect("/backStage/sightManage");
     }
 }

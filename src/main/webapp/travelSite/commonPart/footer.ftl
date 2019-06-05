@@ -1,7 +1,7 @@
 <div class="copy-section">
     <div class="container">
         <div class="footer-top">
-            <p>Copyright &copy; 2016.Company name All rights reserved.</p>
+            <p>Copyright &copy; 2019.中南财经政法大学版权所有.</p>
         </div>
         <div class="social-icons">
             <a href="#"><i class="icon"></i></a>

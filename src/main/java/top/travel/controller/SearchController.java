@@ -35,7 +35,7 @@ public class SearchController extends Controller {
             }
             setAttr("hotelPage",hotelService.paginate(getParaToInt(0,1),pageSize,keywords));
             //在进行推荐时，避开已经搜索到的酒店
-            List<HotelModel> recommendations = hotelService.findAll();
+            List<HotelModel> recommendations = hotelService.findAll().subList(6,8);
             setAttr("recommendations",recommendations);
             render("searchOfHotel.html");
         }
