@@ -16,9 +16,6 @@ public class LoginController extends Controller{
 
 	UserService userService = new UserService();
 
-	public void stepToUserIndex(){
-		render("/travelSite/userIndex.html");
-	}
 
 	public void stepToLogin(){
 		render("/travelSite/login.html");
@@ -78,9 +75,11 @@ public class LoginController extends Controller{
 		String user = getPara("user");
 		String password = getPara("password");
 		String phone = getPara("phone");
+		String image = "user/2.png";
 		//根据用户输入的账号进行数据库匹配
 		if(userService.registerCheck(user,password,phone))//注册成功
 		{
+			userService.insertUser(user,password,phone,image);
 			setAttr("content","");//不让前端显示异常
 			render("/travelSite/login.html");//前往登录界面
 		}

@@ -36,3 +36,8 @@
         </div>
     </nav>
 </header>
+#if(session.currentUser == null)
+<script>
+    window.location.href='/backStage/stepTologin'
+</script>
+#end

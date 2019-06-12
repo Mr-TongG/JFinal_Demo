@@ -57,7 +57,7 @@
                             <td>#(sightComments.time)</td>
                             <td>#(sightComments.s_comment)</td>
                             <td>
-                                <a href="/comment/deleteSightComment?sc_id=#(sightComments.sc_id)"><button onclick="alert('你确定要删除吗？')" class="btn-success">删除评论</button></a>
+                                <a href="/comment/deleteSightComment?sc_id=#(sightComments.sc_id)" onclick="if(confirm('你确认删除吗？')==false) return false;"><button class="btn-success">删除评论</button></a>
                             </td>
                         </tr>
                         #set(x = x+1)
@@ -70,7 +70,7 @@
                             <td>#(hotelComments.time)</td>
                             <td>#(hotelComments.h_comment)</td>
                             <td>
-                                <a href="/comment/deleteHotelComment?hc_id=#(hotelComments.hc_id)"><button onclick="alert('你确定要删除吗？')" class="btn-success">删除评论</button></a>
+                                <a href="/comment/deleteHotelComment?hc_id=#(hotelComments.hc_id)"><button onclick="if(confirm('你确认删除吗？')==false) return false;" class="btn-success">删除评论</button></a>
                             </td>
                         </tr>
                         #set(x = x+1)

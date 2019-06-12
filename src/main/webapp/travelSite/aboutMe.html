@@ -51,18 +51,19 @@
                         <th style="text-align: center">操作</th>
                         </thead>
                         <tbody>
-                        #set(x = 0)
+                        #set(x = 1)
                         #for(reservation : allReservation)
                         <tr>
-                            <td>#(i)</td>
+                            <td>#(x)</td>
                             <td>#(reservation.h_name)</td>
                             <td>#(reservation.r_getInTime)</td>
                             <td>#(reservation.r_getOutTime)</td>
                             <td>#(reservation.r_number)</td>
                             <td>
-                                <a href="/reserve/CancelReservation/#(reservation.r_id)"><button onclick="alert('你确定要取消吗？')" class="btn-success">取消预订</button></a>
+                                <a href="/reserve/CancelReservation/#(reservation.r_id)?u_id=#(session.currentUser.u_id)" onclick="if(confirm('你确定取消吗？')==false) return false;"><button class="btn-success">取消预订</button></a>
                             </td>
                         </tr>
+                        #set(x = x+1)
                         #end
                         </tbody>
                     </table>

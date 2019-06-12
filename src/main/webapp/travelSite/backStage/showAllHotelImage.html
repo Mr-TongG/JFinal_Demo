@@ -1,7 +1,7 @@
 #for(hotelImage : hotelImages)
 <div style="float:left;">
     <div class="col-md-4 gal-gd wow fadeInLeft animated" data-wow-delay=".5s" style="float: left;">
-        <a href="/image/deleteHotelImage/#(hotelImage.id)" >
+        <a href="/image/deleteHotelImage/#(hotelImage.id)" onclick="if(confirm('你确定删除吗？')==false) return false;">
             <div class="nd-wrap nd-style-8" style="width: 300px;height: 200px">
                 <img src="/travelSite/asserts/images/#(hotelImage.h_image)" width="300px" height="200px" alt=""/>
                 <div class="nd-content">

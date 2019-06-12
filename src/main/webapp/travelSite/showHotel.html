@@ -124,7 +124,7 @@
 										<td>1 人</td>
 										<td>不可取消</td>
 										<td>#(hotel.h_price) 元/晚&nbsp;&nbsp;
-											<button type="button" href="#reservation" class="btn btn-info ">预订</button>
+											<button type="button" onclick="location.href ='#reservation'"  class="btn btn-info ">预订</button>
 										</td>
 									</tr>
 									<tr>
@@ -134,7 +134,7 @@
 										<td>2 人</td>
 										<td>不可取消</td>
 										<td>#(hotel.h_price+100) 元/晚&nbsp;&nbsp;
-											<button type="button" href="#reservation" class="btn btn-info ">预订</button>
+											<button type="button" onclick="location.href ='#reservation'" class="btn btn-info ">预订</button>
 										</td>
 									</tr>
 									<tr>
@@ -144,7 +144,7 @@
 										<td>2 人</td>
 										<td>不可取消</td>
 										<td>#(hotel.h_price+150) 元/晚&nbsp;&nbsp;
-											<button type="button" href="#reservation" class="btn btn-info ">预订</button>
+											<button type="button" onclick="location.href ='#reservation'" class="btn btn-info ">预订</button>
 										</td>
 									</tr>
 									</tbody>
@@ -256,8 +256,8 @@
 							</div>
 
 						</div>
-						<div class="col-md-4 rest-grid1">
-							<h3 id="reservation">预订房间</h3>
+						<div class="col-md-4 rest-grid1" id="reservation">
+							<h3>预订房间</h3>
 							<form action="/reserve/reserveHotel" method="post" name="reservation" onsubmit="return Judgement()">
 							<div class="reser-grid1">
 								<h5>入住日期</h5>
@@ -270,16 +270,16 @@
 									<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 									<input type="date" name="r_getOutTime" id="r_getOutTime" placeholder="请选择日期" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请选择日期';}" required="">
 								</div>
-								<h5>成年人人数:</h5>
+								<h5>房间数量:（最多10间）</h5>
 								<div class="best-hot1">
-									<input type="text" name="r_number_1" placeholder="请输入人数"  onfocus="this.value = '';" required="">
+									<input type="text" name="r_number_1" id="r_number_1" placeholder="请输入数量"  onfocus="this.value = '';" required="">
 								</div>
-								<h5>未成年人数:</h5>
+								<h5>入住人数:（每个房间最多两人）</h5>
 								<div class="best-hot1">
-									<input type="text" name="r_number_2" placeholder="请输入人数" onfocus="this.value = '';" required="">
+									<input type="text" name="r_number_2" id="r_number_2" placeholder="请输入人数" onfocus="this.value = '';" required="">
 								</div>
 								<h5>房型:</h5>
-								<select class="sel1" required="">
+								<select class="sel1" id="type" required="">
 									<option value="" disabled>请选择</option>
 									<option value="">经济单人间</option>
 									<option value="">标准间</option>
@@ -314,23 +314,40 @@
 		var start = new Date(startTime.replace("-", "/").replace("-", "/"));
 		var endTime = $("#r_getOutTime").val();
 		var end = new Date(endTime.replace("-", "/").replace("-", "/"));
+		var room = $("#r_number_1").val();//房间数
+		var number = $("#r_number_2").val();//人数
+        var type = $('#type option:selected').text();//房型
 		#if(session.currentUser == null)
 			window.location.href="/login/stepToLogin";
 			return false;
 		#end
 		//比较时需要将对象进行转换
-		if (start < new Date()||start.getTime() == new Date().getTime()){
-			alert("订房时间错误");
+		if (start.getDate() < new Date().getDate()){
+			alert("入住时间错误");
 			return false;
 		}
-		if (end < start||end.getTime() == start.getTime()) {
+		else if (end < start||end.getDate() == start.getDate()) {
 			alert("退房时间必须晚于订房时间！");
 			return false;
 		}
-		else{
-			alert('预订成功');
-			return true;
-		}
+        else if(room > 10) {
+            alert('预订房间数太多了！');
+            return false;
+        }
+		if(type == "经济单人间"){
+		    if(number > room) {
+                alert('请重新确认人数！');
+                return false;
+            }
+        }
+		else {
+            if(number > room*2){
+                alert('请重新确认人数！');
+                return false;
+            }
+        }
+        alert('预订成功');
+        return true;
 	}
 </script>
 <script type="text/javascript">

@@ -140,7 +140,7 @@
                             <td>#(sight.s_closeTime)</td>
                             <td>#(sight.s_phone)</td>
                             <td>
-                              <a href="/sight/deleteSight/#(sight.s_id)"><button class="btn btn-primary" onclick="alert('确定要删除吗？')">删除</button></a>
+                              <a href="/sight/deleteSight/#(sight.s_id)"><button class="btn btn-primary" onclick="if(confirm('你确定删除吗？')==false) return false;">删除</button></a>
                               <button class="btn btn-primary" data-toggle="modal" data-target="#updateSight#(x)">更新</button>
                             </td>
                           </tr>

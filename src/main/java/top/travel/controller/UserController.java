@@ -23,6 +23,8 @@ public class UserController extends Controller {
 
     public void reviseUser(){//更新个人信息
         String u_image = upload();
+        if(u_image == null)
+            u_image = getPara("u_image");
         int u_id = getInt("u_id");
         String u_name = getPara("u_name");
         String u_gender = getPara("u_gender");
@@ -39,7 +41,7 @@ public class UserController extends Controller {
 
     public void deleteById()
     {
-        String id = getPara("id");
+        String id = getPara();
         userService.deleteById(Integer.parseInt(id));
         redirect("/backStage/userManage");
     }
@@ -99,7 +101,8 @@ public class UserController extends Controller {
         String fileName;
         if(uploadFile != null)
             fileName = uploadFile.getFileName();
-        else fileName = "2.jpg";
+        else
+            return null;
         //得到源文件的后缀
         String extension = fileName.substring(fileName.lastIndexOf("."));
         //以当前系统时间为准的格式

@@ -20,7 +20,7 @@ public class MySessionIndexInterceptor implements Interceptor{
             inv.invoke();
         }else{
             inv.getController().setAttr("msg","请不要重复提交");
-            inv.getController().renderFreeMarker("/index.html");
+            inv.getController().render("index.html");
         }
 	}
 }

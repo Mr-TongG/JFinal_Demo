@@ -69,23 +69,23 @@
                 <!-- Line Charts-->
                 #set(x = 1)
                 #for(hotel : hotelPage.list)
-                <div class="col-lg-9" style="width: 70%">
+                <div class="col-lg-9" style="width: 100%">
                   <div class="line-chart-example card">
-                      <a href="#"><i class="icon icon-check" data-toggle="modal" data-target="#myModal#(x)" style="margin-left: 650px"></i></a>
-                      <div id="myModal#(x)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel#(x)" aria-hidden="true" class="modal fade text-left">
+                      <a href="#"><i class="icon icon-check" data-toggle="modal" data-target="#myModal" style="margin-left: 650px"></i></a>
+                      <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                           <div role="document" class="modal-dialog">
                               <div class="modal-content">
                                   <div class="modal-header">
-                                      <h4 id="exampleModalLabel#(x)" class="modal-title">添加酒店图片</h4>
+                                      <h4 id="exampleModalLabel" class="modal-title">添加酒店图片</h4>
                                       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
                                       <form action="/image/insertHotelImage/" method="post" enctype="multipart/form-data">
                                           <div class="form-group">
                                               <label>酒店图片</label>
-                                              <div id="showImg" style="padding:0 10px 0px 0px">
+                                              <!--<div id="showImg" style="padding:0 10px 0px 0px">
                                                   <img id="format_Image" src='/travelSite/asserts/images/'  style="width:150px;height:150px;float:left;border-radius:15px" alt="...">
-                                              </div>
+                                              </div>-->
                                               <div class="mod_btn_1" style="padding:0px;margin:0 auto;">
                                                   <input type="file" name="h_image" id="image" onchange="verificationPicFile(this)" class="mod_btn_file" required/>
                                               </div>

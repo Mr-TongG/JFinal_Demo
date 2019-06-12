@@ -48,10 +48,11 @@ public class UserService {
 			return false;
 		}
 		else
-		{
-			userSqlModel.insertUser(name, password, phone, "user/2.jpg");
 			return true;
-		}
+	}
+	//注册时插入用户
+	public boolean insertUser(String name,String password,String phone,String u_image){
+		return userSqlModel.insertUser(name,password,phone,u_image);
 	}
 
 	public boolean passwordCheck(String pwd)//密码规范判断

@@ -140,7 +140,7 @@
                               <td>#(hotel.h_phone)</td>
                               <td>#(hotel.h_price)</td>
                               <td>
-                                <a href="/hotel/deleteHotel/#(hotel.h_id)"><button class="btn btn-primary" onclick="alert('确定要删除吗？')">删除</button></a>
+                                <a href="/hotel/deleteHotel/#(hotel.h_id)"><button class="btn btn-primary" onclick="if(confirm('你确定删除吗？')==false) return false;">删除</button></a>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#updateHotel#(x)">更新</button>
                               </td>
                             </tr>

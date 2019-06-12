@@ -5,7 +5,6 @@ import top.travel.model.HotelCommModel;
 import top.travel.model.SightCommModel;
 import top.travel.model.sql.CommentSqlModel;
 
-import java.util.List;
 
 public class CommentService{
     public static final CommentSqlModel commentSqlModel = new CommentSqlModel();

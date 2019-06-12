@@ -144,9 +144,9 @@
                             <td>#(user.getStr("u_pwd"))</td>
                             <td>#(user.getStr("u_phone"))</td>
                             <td>#(user.getStr("u_gender"))</td>
-                            <td><img style="height:100px;width:100px" src='/travelSite/asserts/images/#(user.getStr("u_image"))'></img></td>
+                            <td><img style="height:100px;width:100px" src='/travelSite/asserts/images/#(user.getStr("u_image"))' /></td>
                             <td>#(user.getStr("u_abstract"))</td>
-                            <td><a href="/user/deleteById/#(user.u_id)"><button class="btn btn-secondary" onclick="alert('你确定要删除吗？')">删除</button></a></td>
+                            <td><a href="/user/deleteById/#(user.u_id)"><button class="btn btn-secondary" onclick="if(confirm('你确定删除吗？')==false) return false;">删除</button></a></td>
                           </tr>
                           #end
                           </tbody>
