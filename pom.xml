@@ -16,7 +16,7 @@
     <log4j.version>1.2.17</log4j.version>
     <jfinalundertow.version>1.5</jfinalundertow.version>
 	<druid.version>1.0.29</druid.version>
-	<mysql.version>5.1.46</mysql.version>
+	<mysql.version>8.0.16</mysql.version>
 </properties>
   
   <!-- 使用阿里 maven 库 -->
